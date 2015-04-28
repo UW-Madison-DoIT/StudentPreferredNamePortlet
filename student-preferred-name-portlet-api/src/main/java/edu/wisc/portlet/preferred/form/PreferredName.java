@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class PreferredName implements Serializable {
     private static final long serialVersionUID = 2L;
@@ -103,5 +104,18 @@ public class PreferredName implements Serializable {
         return new HashCodeBuilder(262444801, 597203845).appendSuper(super.hashCode())
             .append(this.middleName).append(this.lastName).append(this.hideSource)
             .append(this.firstName).append(this.pvi).toHashCode();
+    }
+
+    /**
+     * @see java.lang.Object#toString()
+     */
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("firstName", this.firstName)
+            .append("middleName", this.middleName)
+            .append("lastName", this.lastName)
+            .append("pvi", this.pvi)
+            .append("hideSource", this.hideSource)
+            .toString();
     }
 }

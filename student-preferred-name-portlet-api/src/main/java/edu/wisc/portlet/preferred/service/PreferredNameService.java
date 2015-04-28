@@ -4,6 +4,15 @@ import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 
 public interface PreferredNameService {
+
+    /**
+     * Get the name preference for the person identified by the given pvi.
+     *
+     * If the user has no name preference, returns an unpopulated PreferredName object.
+     *
+     * @param pvi
+     * @return a PreferredName object, whether the user prefers or not. Does not return null.
+     */
     public PreferredName getPreferredName(String pvi);
 
     public PreferredName getPreferredName(String pvi, String legalLastName);

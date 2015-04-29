@@ -61,7 +61,24 @@ public class PreferredNameServiceImplTest {
 
         assertEquals(new PreferredName(), returnedPreferredName);
 
+    }
 
+    /**
+     * Test that the service represents the preferred name of a user for whom the underlying DAO
+     * reports no preferred name as preferring his or her actual last name.
+     */
+    @Test
+    public void noPreferredNameWithLastNameRepresentedAsPreferredName() {
+
+        when(preferredNameDao.getPreferredName("some_other_pvi")).thenReturn(null);
+
+        final PreferredName returnedPreferredName =
+            serviceImpl.getPreferredName("some_other_pvi", "PETRO");
+
+        final PreferredName expectedPreferredName = new PreferredName();
+        expectedPreferredName.setLastName("PETRO");
+
+        assertEquals(expectedPreferredName, returnedPreferredName);
     }
 
 }

@@ -15,6 +15,17 @@ public interface PreferredNameService {
      */
     public PreferredName getPreferredName(String pvi);
 
+    /**
+     * Get the name preference for the person identified by the given pvi,
+     * given a known last name of record for the person.
+     *
+     * If the user has no name preference,
+     * returns a PreferredName object preferring the last name of record.
+     *
+     * @param pvi
+     * @param legalLastName
+     * @return a PreferredName .  will not return null.
+     */
     public PreferredName getPreferredName(String pvi, String legalLastName);
 
     public PreferredNameExtended getPreferredNameAndLegalName(String pvi);

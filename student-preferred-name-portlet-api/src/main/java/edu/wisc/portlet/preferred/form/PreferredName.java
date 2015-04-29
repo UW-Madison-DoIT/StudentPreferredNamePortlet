@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class PreferredName implements Serializable {
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 3L;
 
     private String firstName;
 
@@ -90,7 +91,7 @@ public class PreferredName implements Serializable {
             return false;
         }
         PreferredName rhs = (PreferredName) object;
-        return new EqualsBuilder().appendSuper(super.equals(object))
+        return new EqualsBuilder()
             .append(this.middleName, rhs.middleName).append(this.lastName, rhs.lastName)
             .append(this.hideSource, rhs.hideSource).append(this.firstName, rhs.firstName)
             .append(this.pvi, rhs.pvi).isEquals();
@@ -100,8 +101,21 @@ public class PreferredName implements Serializable {
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {
-        return new HashCodeBuilder(262444801, 597203845).appendSuper(super.hashCode())
+        return new HashCodeBuilder(262444801, 597203845)
             .append(this.middleName).append(this.lastName).append(this.hideSource)
             .append(this.firstName).append(this.pvi).toHashCode();
+    }
+
+    /**
+     * @see java.lang.Object#toString()
+     */
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("firstName", this.firstName)
+            .append("middleName", this.middleName)
+            .append("lastName", this.lastName)
+            .append("pvi", this.pvi)
+            .append("hideSource", this.hideSource)
+            .toString();
     }
 }

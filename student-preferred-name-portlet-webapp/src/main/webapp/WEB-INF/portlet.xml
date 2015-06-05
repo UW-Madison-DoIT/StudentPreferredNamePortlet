@@ -43,10 +43,6 @@
         </portlet-info>
         <portlet-preferences> 
             <preference>
-              <name>displayName</name>
-              <value>displayName</value>
-            </preference>
-            <preference>
             	<name>pviUserAttributes</name>
             	<value>wiscedupvi</value>
             </preference>
@@ -76,15 +72,14 @@
             </preference>
         </portlet-preferences>
     </portlet>
-    
-    <user-attribute>
-        <name>displayName</name>
-    </user-attribute>
     <user-attribute>
         <name>sn</name>
     </user-attribute>
     <user-attribute>
     	<name>wiscedupvi</name>
+    </user-attribute>
+    <user-attribute>
+        <name>wiscEduSORName</name>
     </user-attribute>
     <user-attribute>
     	<name>wiscedupreferredname</name>

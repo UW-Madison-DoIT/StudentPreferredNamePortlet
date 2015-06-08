@@ -37,7 +37,7 @@
 <div id="${n}student-preferred-name" class="student-preferred-name">
       <div class="contact-info-official-name">
           <span class="uportal-channel-strong"><spring:message code="label.official.name"/>:</span>
-          <span>${displayName}</span>
+          <span>${legalName}</span>
         </div>
       <div class="contact-info-pref-name-view ${n}view">
               <span class="uportal-channel-strong"><spring:message code="label.preferred.name"/>:</span>

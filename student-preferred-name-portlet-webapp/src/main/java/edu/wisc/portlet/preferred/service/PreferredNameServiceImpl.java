@@ -59,16 +59,20 @@ public class PreferredNameServiceImpl implements PreferredNameService {
             && (jdbcPn == null
             || (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils
             .isEmpty(jdbcPn.getMiddleName()) && StringUtils.isEmpty(jdbcPn.getLastName()))
-        )
-            ) {
+            )){
             return "(not set)";
-        } else {
-
-            if (ldapPn.equals(jdbcPn)) {
+        }else if(jdbcPn == null || 
+                (StringUtils.isEmpty(jdbcPn.getFirstName()) && 
+                 StringUtils.isEmpty(jdbcPn.getMiddleName()) && 
+                 StringUtils.isEmpty(jdbcPn.getLastName()))){ 
+            return "(deletion pending)";
+        }else{
+            String ldapPreferredName = new StringBuilder().append(ldapPn.getFirstName()).append(ldapPn.getMiddleName()).toString();
+            String jdbcPreferredName = new StringBuilder().append(jdbcPn.getFirstName()).append(jdbcPn.getMiddleName()).toString();
+            if(ldapPreferredName.equals(jdbcPreferredName)){ 
                 return "";
-            } else if (jdbcPn == null && !StringUtils.isEmpty(ldapPn.getFirstName())) {
-                return "(deletion pending)";
-            } else {
+            }
+            else {
                 return "(change pending)";
             }
         }

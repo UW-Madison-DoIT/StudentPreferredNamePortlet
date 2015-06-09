@@ -67,6 +67,7 @@ public class PreferredNameServiceImpl implements PreferredNameService {
                  StringUtils.isEmpty(jdbcPn.getLastName()))){ 
             return "(deletion pending)";
         }else{
+            //Logic does not detect a last name change only.
             String ldapPreferredName = new StringBuilder().append(ldapPn.getFirstName()).append(ldapPn.getMiddleName()).toString();
             String jdbcPreferredName = new StringBuilder().append(jdbcPn.getFirstName()).append(jdbcPn.getMiddleName()).toString();
             if(ldapPreferredName.equals(jdbcPreferredName)){ 

@@ -49,6 +49,7 @@ public class PersonalInformationController {
             preferredNameService.getPreferredName(pvi, userInfo.get("sn"));
         String currentFirstName = userInfo.get("wiscedupreferredfirstname");
         String currentMiddleName = userInfo.get("wiscedupreferredmiddlename");
+        //wiscedupreferredlastname is not currently populated
         String currentLastName = userInfo.get("wiscedupreferredlastname");
 
         if (preferredName != null) {

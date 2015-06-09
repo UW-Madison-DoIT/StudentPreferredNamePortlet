@@ -9,7 +9,6 @@ import javax.portlet.PortletModeException;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.jasig.springframework.security.portlet.authentication.PrimaryAttributeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

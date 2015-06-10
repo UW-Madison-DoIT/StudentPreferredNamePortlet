@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>edu.wisc.my.portlet.prefname</groupId>
     <artifactId>student-preferred-name-portlet</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.7</version>
     <packaging>pom</packaging>
 
     <name>Student Preferred Name Portlet - Parent</name>
@@ -20,7 +20,7 @@
         <connection>scm:git:git@github.com:UW-Madison-DoIT/StudentPreferredNamePortlet.git</connection>
         <developerConnection>scm:git:git@github.com:UW-Madison-DoIT/StudentPreferredNamePortlet.git</developerConnection>
         <url>https://github.com/UW-Madison-DoIT/StudentPreferredNamePortlet</url>
-        <tag>HEAD</tag>
+        <tag>student-preferred-name-portlet-1.0.7</tag>
     </scm>
     
     <distributionManagement>

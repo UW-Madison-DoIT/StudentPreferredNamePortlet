@@ -81,21 +81,21 @@
                               <span class='label'>First</span>
                               <br/>
                               <span>
-                                  <form:input path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
+                                  <form:input aria-label="edit first name box" path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
                               </span>
                               </div>
                               <div class="edit-name">
                               <span class='label'>Middle</span>
                               <br/>
                               <span>
-                                  <form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
+                                  <form:input aria-label="edit middle name box" path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
                               </span>
                               </div>
                             <div class="edit-name">
                             <span class='label'>Last*</span>
                             <br/>
                             <span>
-                                <form:input path="lastName" class="uportal-input-text ${n}last-name" maxlength="30" />
+                                <form:input aria-label="edit last name box" path="lastName" class="uportal-input-text ${n}last-name" maxlength="30" />
                             </span>
                             </div>
                           </div>

@@ -3,7 +3,7 @@
   <parent>
     <groupId>edu.wisc.my.portlet.prefname</groupId>
     <artifactId>student-preferred-name-portlet</artifactId>
-    <version>1.0.9-SNAPSHOT</version>
+    <version>1.0.9</version>
   </parent>
   <artifactId>student-preferred-name-portlet-stored-proc-impl</artifactId>
   

@@ -566,4 +566,8 @@
             </plugins>
         </pluginManagement>
     </build>
+    <!-- IGNORE
+    This comment exists only to tweak the size of the pom.xml file
+    in the hope that Sonatype Nexus will resultingly accept its upload.
+    -->
 </project>

@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:merge="http://maven.apache.org/plugin-merge" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <parent>
-        <groupId>edu.wisc.doit.code</groupId>
-        <artifactId>shared-tools-uw-parent</artifactId>
-        <version>7</version>
+        <groupId>edu.wisc.my</groupId>
+        <artifactId>myuw-parent</artifactId>
+        <version>4</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -23,53 +23,10 @@
         <tag>HEAD</tag>
     </scm>
     
-    <distributionManagement>
-        <repository>
-            <id>code.doit-uw-releases</id>
-            <name>code.doit-uw-releases</name>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>code.doit-uw-snapshots</id>
-            <name>code.doit-uw-snapshots</name>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-    
     <repositories>
         <repository>
-            <id>code.doit-public-releases</id>
-            <name>code.doit-public-releases</name>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/public-releases</url>
-        </repository>
-        <repository>
-            <id>code.doit-public-snapshots</id>
-            <name>code.doit-public-snapshots</name>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/public-snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>code.doit-uw-releases</id>
-            <name>code.doit-uw-releases</name>
-            <url>https://code.doit.wisc.edu/maven/content/repositories/uw-releases</url>
-        </repository>
-        <repository>
-            <id>code.doit-release-proxies</id>
-            <name>code.doit-release-proxies</name>
-            <url>https://code.doit.wisc.edu/maven/content/groups/release-proxies</url>
-        </repository>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>myuw-releases</id>
+            <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>
         </repository>
     </repositories>
 

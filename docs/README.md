@@ -72,7 +72,72 @@ In the administrative interface, an administrator can delete a preferred name.
 
 Administrators can also toggle whether to hide the primary/legal name (in directory search results?)
 
+## Guts
 
+In `portlet.xml`, the portlet maps in several user attributes from the portal.
+
+```xml
+   <user-attribute>
+        <name>sn</name>
+    </user-attribute>
+    <user-attribute>
+    	<name>wiscedupvi</name>
+    </user-attribute>
+    <user-attribute>
+        <name>wiscEduSORName</name>
+    </user-attribute>
+    <user-attribute>
+    	<name>wiscedupreferredname</name>
+    </user-attribute>
+    <user-attribute>
+    	<name>wiscedupreferredmiddlename</name>
+    </user-attribute>
+    <user-attribute>
+    	<name>wiscedupreferredfirstname</name>
+    </user-attribute>
+```
+
+It uses these attributes to compute whether there's a pending preferred name change
+
+```java
+  String currentFirstName = userInfo.get("wiscedupreferredfirstname");
+  String currentMiddleName = userInfo.get("wiscedupreferredmiddlename");
+  //wiscedupreferredlastname is not currently populated
+  String currentLastName = userInfo.get("wiscedupreferredlastname");
+  ...
+  modelMap.addAttribute("pendingStatus", preferredNameService.getStatus(
+    new PreferredName(currentFirstName, currentMiddleName, currentLastName, pvi)));
+```
+
+That is, the portlet detects a difference between the preferred name coming through user attributes
+and the preferred name read from the preferred name database, and uses that difference to
+indicate to the user whether there's an in flight preferred name change.
+
+It also uses these attributes to initialize the portlet
+
+```java
+  modelMap.addAttribute("sirName", userInfo.get("sn"));
+  modelMap.addAttribute("legalName", userInfo.get("wiscEduSORName"));
+```
+
+ for render.
+
+```jsp
+  <div class="contact-info-official-name">
+    <span class="uportal-channel-strong"><spring:message code="label.official.name"/>:</span>
+    <span>${legalName}</span>
+  </div>
+```
+
+That is to say, the user attribute `wiscEduSORName`
+renders on the page as the apparent legal name.
+
+The user attribute `sn` displays as the status quo preferred last name,
+unless there's a last name from a status quo preferred last name.
+
+(Some of this complexity looks like working around
+not getting the preferred last name via user attribute
+at the time the Portlet was developed.)
 
 [Student Personal Information]: https://my.wisc.edu/web/apps/details/StudentPreferredName
 [Preferred Name]: https://my.wisc.edu/web/apps/details/preferred-name

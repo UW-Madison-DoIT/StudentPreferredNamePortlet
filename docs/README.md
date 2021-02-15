@@ -139,6 +139,14 @@ unless there's a last name from a status quo preferred last name.
 not getting the preferred last name via user attribute
 at the time the Portlet was developed.)
 
+The Portlet reads preferred name using a SQL query against `msnprefname.msn_preferred_name`.
+
+The Portlet updates preferred name using stored procedure `msnprefname.LOAD_PREFERRED_NAME`.
+
+Showing and hiding preferred name via the admin interface
+invokes the `msnprefname.UNHIDE_SOURCE_NAME` and `msnprefname.HIDE_SOURCE_NAME`
+stored procedures, respectively.
+
 [Student Personal Information]: https://my.wisc.edu/web/apps/details/StudentPreferredName
 [Preferred Name]: https://my.wisc.edu/web/apps/details/preferred-name
 [Madison "Personal Information" portlet]: https://my.wisc.edu/web/apps/details/contact-information

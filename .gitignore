@@ -1,8 +1,13 @@
+.classpath/
+.idea/**
 .project
 .settings/
-target
-.classpath/
+
+overlays
 student-preferred-name-portlet-api/.classpath
 student-preferred-name-portlet-stored-proc-impl/.classpath
 student-preferred-name-portlet-webapp/.classpath
-overlays
+target
+
+*.iml
+

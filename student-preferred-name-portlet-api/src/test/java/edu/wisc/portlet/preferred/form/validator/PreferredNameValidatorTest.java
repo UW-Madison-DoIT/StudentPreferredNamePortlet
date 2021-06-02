@@ -14,18 +14,12 @@ import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 
 public class PreferredNameValidatorTest {
-  
-  private PreferredNameExtended pne;
-  
-  @Before
-  public void generatePreferredNameStub() {
-    pne = new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
-  }
 
-  
   @Test
   public void testLastNameRegexValid() {
-    
+    PreferredNameExtended pne =
+      new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
+
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     
     ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
@@ -37,7 +31,10 @@ public class PreferredNameValidatorTest {
   
   @Test
   public void testLastNameRegexBadQuotes() {
-    
+
+    PreferredNameExtended pne =
+      new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
+
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     
     pne.setLastName("O`Neal");//backtick not valid
@@ -51,7 +48,10 @@ public class PreferredNameValidatorTest {
   
   @Test
   public void testLastNameTryingToChange() {
-    
+
+    PreferredNameExtended pne =
+      new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
+
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     
     pne.setFirstName("Opera");
@@ -66,7 +66,10 @@ public class PreferredNameValidatorTest {
   
   @Test
   public void testLastNameCaseChangeOnly() {
-    
+
+    PreferredNameExtended pne =
+      new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
+
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     
     pne.setLastName("ONeal");
@@ -81,7 +84,10 @@ public class PreferredNameValidatorTest {
   
   @Test
   public void testHyphenInLastName() {
-    
+
+    PreferredNameExtended pne =
+      new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
+
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     
     pne.setLastName("Time-Lev");

@@ -63,9 +63,12 @@ public class PreferredNameValidatorTest {
       fail("This should error due to ONEAL trying to become Winfrey");
     }
   }
-  
+
+  /**
+   * Test that changes to capitalization of characters in last name are permitted.
+   */
   @Test
-  public void testLastNameCaseChangeOnly() {
+  public void testMayPreferCapitalizationChangesInLastName() {
 
     PreferredNameExtended pne =
       new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
@@ -81,20 +84,41 @@ public class PreferredNameValidatorTest {
       fail(bn.getAllErrors().toString());
     }
   }
-  
-  @Test
-  public void testHyphenInLastName() {
 
+  /**
+   * Test that allows preferred last name that differs from legal last name by inclusion of additional hyphens.
+   */
+  @Test
+  public void testMayPreferAdditionalHyphensInLastName() {
+
+    // prefers "Berners-Lee" with a system of record last name of "BERNERSLEE"
     PreferredNameExtended pne =
-      new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
+      new PreferredNameExtended(new PreferredName("Timothy","John","Berners-Lee"),"BERNERSLEE");
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
-    
-    pne.setLastName("Time-Lev");
-    pne.setLegalLastName("TIMELEV");
-    
+
     ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
-    
+
+    if(bn.hasErrors()) {
+      //shouldn't have failed
+      fail(bn.getAllErrors().toString());
+    }
+  }
+
+  /**
+   * Test that allows preferred last name that differs from legal last name
+   * by exclusion of hyphens present in the legal name..
+   */
+  @Test
+  public void testMayPreferFewerHypensInLastName() {
+    // prefers "Lloyd Webber" with a system of record last name of "Lloyd-Webber"
+    PreferredNameExtended andrewLloydWebber =
+      new PreferredNameExtended(new PreferredName("Andrew","","Lloyd Webber"),"Lloyd-Webber");
+
+    BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    ValidationUtils.invokeValidator(new PreferredNameValidator(), andrewLloydWebber, bn);
+
     if(bn.hasErrors()) {
       //shouldn't have failed
       fail(bn.getAllErrors().toString());

@@ -21,14 +21,14 @@ public class PreferredNameValidatorTest {
       new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
-    
+
     ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
-    
+
     if(bn.hasErrors()) {
       fail(bn.getAllErrors().toString());
     }
   }
-  
+
   @Test
   public void testLastNameRegexBadQuotes() {
 
@@ -36,16 +36,16 @@ public class PreferredNameValidatorTest {
       new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
-    
+
     pne.setLastName("O`Neal");//backtick not valid
-    
+
     ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
-    
+
     if(!bn.hasErrors() || bn.getAllErrors().size() != 1) {
       fail("This should error due to the wrong single quote being used");
     }
   }
-  
+
   @Test
   public void testLastNameTryingToChange() {
 
@@ -53,12 +53,12 @@ public class PreferredNameValidatorTest {
       new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
-    
+
     pne.setFirstName("Opera");
     pne.setLastName("Winfrey");
-    
+
     ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
-    
+
     if(!bn.hasErrors() || bn.getAllErrors().size() != 1) {
       fail("This should error due to ONEAL trying to become Winfrey");
     }
@@ -74,11 +74,11 @@ public class PreferredNameValidatorTest {
       new PreferredNameExtended(new PreferredName("Shaquille","Danger","O'Neal"),"ONEAL");
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
-    
+
     pne.setLastName("ONeal");
-    
+
     ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
-    
+
     if(bn.hasErrors()) {
       //shouldn't have failed
       fail(bn.getAllErrors().toString());

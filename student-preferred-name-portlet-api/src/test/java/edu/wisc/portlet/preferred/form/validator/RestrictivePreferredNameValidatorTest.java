@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.HashMap;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.MapBindingResult;
@@ -13,7 +12,7 @@ import org.springframework.validation.ValidationUtils;
 import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 
-public class PreferredNameValidatorTest {
+public class RestrictivePreferredNameValidatorTest {
 
   @Test
   public void testLastNameRegexValid() {
@@ -22,7 +21,7 @@ public class PreferredNameValidatorTest {
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
 
-    ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
+    ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bn);
 
     if(bn.hasErrors()) {
       fail(bn.getAllErrors().toString());
@@ -39,7 +38,7 @@ public class PreferredNameValidatorTest {
 
     pne.setLastName("O`Neal");//backtick not valid
 
-    ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
+    ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bn);
 
     if(!bn.hasErrors() || bn.getAllErrors().size() != 1) {
       fail("This should error due to the wrong single quote being used");
@@ -57,7 +56,7 @@ public class PreferredNameValidatorTest {
     pne.setFirstName("Opera");
     pne.setLastName("Winfrey");
 
-    ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
+    ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bn);
 
     if(!bn.hasErrors() || bn.getAllErrors().size() != 1) {
       fail("This should error due to ONEAL trying to become Winfrey");
@@ -77,7 +76,7 @@ public class PreferredNameValidatorTest {
 
     pne.setLastName("ONeal");
 
-    ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
+    ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bn);
 
     if(bn.hasErrors()) {
       //shouldn't have failed
@@ -97,7 +96,7 @@ public class PreferredNameValidatorTest {
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
 
-    ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
+    ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bn);
 
     if(bn.hasErrors()) {
       //shouldn't have failed
@@ -117,7 +116,7 @@ public class PreferredNameValidatorTest {
 
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
 
-    ValidationUtils.invokeValidator(new PreferredNameValidator(), andrewLloydWebber, bn);
+    ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), andrewLloydWebber, bn);
 
     if(bn.hasErrors()) {
       //shouldn't have failed

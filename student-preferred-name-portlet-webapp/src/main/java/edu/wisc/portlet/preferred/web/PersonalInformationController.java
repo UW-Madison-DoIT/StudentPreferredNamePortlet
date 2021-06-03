@@ -21,7 +21,7 @@ import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
-import edu.wisc.portlet.preferred.form.validator.PreferredNameValidator;
+import edu.wisc.portlet.preferred.form.validator.RestrictivePreferredNameValidator;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
 @Controller
@@ -116,7 +116,7 @@ public class PersonalInformationController {
         PreferredNameExtended pne = new PreferredNameExtended(preferredName, userInfo.get("sn"));
 
         //validation
-        ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bindingResult);
+        ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bindingResult);
         if (!bindingResult.hasErrors()) {
             //submit changes to DAO
 

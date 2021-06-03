@@ -11,7 +11,13 @@ import org.springframework.validation.Validator;
 import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 
-public class PreferredNameValidator implements Validator {
+/**
+ * Implements validation rules that
+ * 1. Preferred last name can differ from "legal" last name only by casing, spacing, single quote, and hyphens.
+ * 2. Preferred first and middle names can contain only allowable characters.
+ * 3. Preferred first, middle, and last names can be at most 30 characters long.
+ */
+public class RestrictivePreferredNameValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {

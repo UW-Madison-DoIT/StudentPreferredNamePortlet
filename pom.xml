@@ -15,14 +15,14 @@
 
     <name>Student Preferred Name Portlet - Parent</name>
     <description>A place for students to update there preferred name.</description>
-    
+
     <scm>
         <connection>scm:git:git@github.com:UW-Madison-DoIT/StudentPreferredNamePortlet.git</connection>
         <developerConnection>scm:git:git@github.com:UW-Madison-DoIT/StudentPreferredNamePortlet.git</developerConnection>
         <url>https://github.com/UW-Madison-DoIT/StudentPreferredNamePortlet</url>
         <tag>HEAD</tag>
     </scm>
-    
+
     <repositories>
         <repository>
             <id>myuw-releases</id>
@@ -79,7 +79,7 @@
         <module>student-preferred-name-portlet-stored-proc-impl</module>
         <module>student-preferred-name-portlet-webapp</module>
     </modules>
-    
+
     <dependencyManagement>
         <dependencies>
         	<dependency>
@@ -162,7 +162,7 @@
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
                 <version>${mail.version}</version>
-            </dependency>            
+            </dependency>
             <dependency>
                 <groupId>javax.portlet</groupId>
                 <artifactId>portlet-api</artifactId>
@@ -421,7 +421,7 @@
                 <artifactId>standard</artifactId>
                 <version>${taglibs-standard.version}</version>
             </dependency>
-            
+
             <!-- Unit test dependencies. -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -435,7 +435,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
+
     <build>
         <pluginManagement>
             <plugins>

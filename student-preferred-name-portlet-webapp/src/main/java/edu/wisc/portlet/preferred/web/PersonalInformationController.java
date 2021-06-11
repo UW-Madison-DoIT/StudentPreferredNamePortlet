@@ -9,6 +9,7 @@ import javax.portlet.PortletModeException;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 
+import edu.wisc.portlet.preferred.form.validator.BasicPreferredNameValidator;
 import org.jasig.springframework.security.portlet.authentication.PrimaryAttributeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -116,6 +117,7 @@ public class PersonalInformationController {
         PreferredNameExtended pne = new PreferredNameExtended(preferredName, userInfo.get("sn"));
 
         //validation
+        ValidationUtils.invokeValidator(new BasicPreferredNameValidator(), pne, bindingResult);
         ValidationUtils.invokeValidator(new RestrictivePreferredNameValidator(), pne, bindingResult);
         if (!bindingResult.hasErrors()) {
             //submit changes to DAO

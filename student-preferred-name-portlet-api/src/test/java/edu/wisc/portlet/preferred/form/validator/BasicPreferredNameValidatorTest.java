@@ -3,22 +3,25 @@ package edu.wisc.portlet.preferred.form.validator;
 import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 import org.junit.Test;
-import org.springframework.validation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.MapBindingResult;
+import org.springframework.validation.Validator;
 
 import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
-public class Latin9PreferredNameValidatorTest {
+public class BasicPreferredNameValidatorTest {
 
-  Validator validator = new Latin9PreferredNameValidator();
+  Validator validator = new BasicPreferredNameValidator();
 
   /**
    * Test that the validator supports validating PreferredNameExtended.
    */
   @Test
   public void supportsPreferredNameExtended() {
-    assertTrue(validator.supports(PreferredNameExtended.class));
+    assertTrue("Should support validating PreferredNameExtended.",
+      validator.supports(PreferredNameExtended.class));
   }
 
   /**
@@ -26,8 +29,10 @@ public class Latin9PreferredNameValidatorTest {
    */
   @Test
   public void doesNotSupportPreferredName() {
-    assertFalse(validator.supports(PreferredName.class));
+    assertFalse("Should not support validating PreferredName",
+      validator.supports(PreferredName.class));
   }
+
 
   /**
    * Test that attempt to validate a PreferredName (not PreferredNameExtended) throws IllegalArgumentException.
@@ -72,7 +77,7 @@ public class Latin9PreferredNameValidatorTest {
   }
 
   @Test
-  public void allowsNoPreferredMiddleName() {
+  public void preferredMiddleNameIsOptional() {
     Validator validator = new Latin9PreferredNameValidator();
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     PreferredNameExtended pne = new PreferredNameExtended();

@@ -33,13 +33,6 @@ public class RestrictivePreferredNameValidator implements Validator {
 
         PreferredNameExtended pn = (PreferredNameExtended) target;
 
-        if (StringUtils.isBlank(pn.getFirstName())) {
-            errors.rejectValue("firstName", "error.required");
-        }
-
-        if (!StringUtils.isEmpty(pn.getFirstName()) && pn.getFirstName().length() > 30) {
-            errors.rejectValue("firstName", "error.toolong");
-        }
 
         if (!StringUtils.isEmpty(pn.getMiddleName()) && pn.getMiddleName().length() > 30) {
             errors.rejectValue("middleName", "error.toolong");

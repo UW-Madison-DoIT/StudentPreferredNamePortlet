@@ -1,26 +1,21 @@
 package edu.wisc.portlet.preferred.form.validator;
 
-import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * Validator implementing validation of the LATIN-9 character set.
- * Validates instances of PreferredNameExtended.
- *
- * Does NOT implement basic preferred name validation.
- * The intention is that callers use BasicPreferredNameValidator for basic validation and this validator for
- * validation specific to LATIN-9 considerations.
+ * Implements basic preferred name validation rules.
  *
  * Validations implemented:
  *
  * field:error:condition
  *
+ * firstName : error.required : when has no text
+ * firstName : error.toolong : when > 30 characters
  */
-public class Latin9PreferredNameValidator
-  implements Validator {
+public class BasicPreferredNameValidator implements Validator {
 
   @Override
   public boolean supports(Class<?> clazz) {
@@ -36,6 +31,12 @@ public class Latin9PreferredNameValidator
     }
 
     PreferredNameExtended pne = (PreferredNameExtended) target;
+
+    if (!StringUtils.hasText(pne.getFirstName())) {
+      errors.rejectValue("firstName", "error.required");
+    } else if (pne.getFirstName().length() > 30) {
+      errors.rejectValue("firstName", "error.toolong");
+    }
 
   }
 }

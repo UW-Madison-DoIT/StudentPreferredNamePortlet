@@ -86,4 +86,18 @@ public class BasicPreferredNameValidatorTest {
     assertFalse(bn.hasFieldErrors("middleName"));
   }
 
+  @Test
+  public void preferredMiddleNameMustNotBeMoreThan30Characters() {
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setMiddleName("abcdefghijklmnopqrstuvwxyzabcde"); // 26 + 5 = 31 characters
+
+    validator.validate(pne, br);
+
+    assertTrue("31 characters should be too long for middle name",
+      ValidatorTestSupport.fieldHasError("middleName", "error.toolong", br));
+  }
+
 }

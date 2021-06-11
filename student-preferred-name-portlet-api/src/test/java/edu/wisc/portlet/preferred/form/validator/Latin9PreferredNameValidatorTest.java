@@ -39,39 +39,6 @@ public class Latin9PreferredNameValidatorTest {
   }
 
   @Test
-  public void requiresPreferredFirstName() {
-    PreferredNameExtended pne = new PreferredNameExtended();
-
-    BindingResult emptyStringFirstNameBindingResult = new MapBindingResult(new HashMap<String, String>(), "pn");
-    pne.setFirstName("");
-    validator.validate(pne, emptyStringFirstNameBindingResult);
-
-    assertTrue(
-      "firstName should have error.required when empty string",
-      ValidatorTestSupport.fieldHasError("firstName", "error.required", emptyStringFirstNameBindingResult));
-
-    BindingResult nullFirstNameBindingResult = new MapBindingResult(new HashMap<String, String>(), "pn");
-    pne.setFirstName(null);
-    validator.validate(pne, nullFirstNameBindingResult);
-
-    assertTrue(
-      "firstName should have error.required when empty string",
-      ValidatorTestSupport.fieldHasError("firstName", "error.required", nullFirstNameBindingResult));
-  }
-
-  @Test
-  public void rejectsPreferredFirstNamesLongerThan30Characters() {
-    Validator validator = new Latin9PreferredNameValidator();
-    BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
-    PreferredNameExtended pne = new PreferredNameExtended();
-    pne.setFirstName("abcdefghijklmnopqrstuvwxyzabcde"); // 26 + 5 = 31 characters
-    validator.validate(pne, bn);
-
-    assertTrue("Should set error.toolong on firstName when firstName 31 characters.",
-      ValidatorTestSupport.fieldHasError("firstName", "error.toolong", bn));
-  }
-
-  @Test
   public void allowsNoPreferredMiddleName() {
     Validator validator = new Latin9PreferredNameValidator();
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");

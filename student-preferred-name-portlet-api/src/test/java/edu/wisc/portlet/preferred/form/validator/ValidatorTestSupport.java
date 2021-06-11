@@ -17,7 +17,7 @@ public class ValidatorTestSupport {
    */
   public static boolean fieldHasError(String fieldName, String expectedErrorCode, Errors errors) {
 
-    for (FieldError fieldError: errors.getFieldErrors("firstName")) {
+    for (FieldError fieldError: errors.getFieldErrors(fieldName)) {
       for (String errorCode: fieldError.getCodes()) {
         if (expectedErrorCode.equals(errorCode)) {
           return true;

@@ -12,10 +12,12 @@ import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 
 /**
+ * This validator implements the specifically restrictive rules.
+ * It is intended to be used after the basic validator validates basic rules.
+ *
  * Implements validation rules that
  * 1. Preferred last name can differ from "legal" last name only by casing, spacing, single quote, and hyphens.
  * 2. Preferred first and middle names can contain only allowable characters.
- * 3. Preferred first, middle, and last names can be at most 30 characters long.
  */
 public class RestrictivePreferredNameValidator implements Validator {
 
@@ -32,10 +34,6 @@ public class RestrictivePreferredNameValidator implements Validator {
         }
 
         PreferredNameExtended pn = (PreferredNameExtended) target;
-
-        if (!StringUtils.isEmpty(pn.getLastName()) && pn.getLastName().length() > 30) {
-            errors.rejectValue("lastName", "error.toolong");
-        }
 
         final String regx = "^[A-Za-z .-]*$";
         Pattern ptrn = Pattern.compile(regx);

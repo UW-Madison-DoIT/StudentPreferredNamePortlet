@@ -100,4 +100,18 @@ public class BasicPreferredNameValidatorTest {
       ValidatorTestSupport.fieldHasError("middleName", "error.toolong", br));
   }
 
+  @Test
+  public void preferredLastNameMustNotBeMoreThan30Characters() {
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLastName("abcdefghijklmnopqrstuvwxyzabcde"); // 26 + 5 = 31 characters
+
+    validator.validate(pne, br);
+
+    assertTrue("31 characters should be too long for last name",
+      ValidatorTestSupport.fieldHasError("lastName", "error.toolong", br));
+  }
+
 }

@@ -15,6 +15,7 @@ import org.springframework.validation.Validator;
  * firstName : error.required : when has no text
  * firstName : error.toolong : when > 30 characters
  * middleName : error.toolong : when > 30 characters
+ * lastName : error.tooLong: when > 30 characters
  */
 public class BasicPreferredNameValidator implements Validator {
 
@@ -41,6 +42,10 @@ public class BasicPreferredNameValidator implements Validator {
 
     if (pne.getMiddleName() != null && pne.getMiddleName().length() > 30) {
       errors.rejectValue("middleName", "error.toolong");
+    }
+
+    if (pne.getLastName() != null && pne.getLastName().length() > 30) {
+      errors.rejectValue("lastName", "error.toolong");
     }
 
   }

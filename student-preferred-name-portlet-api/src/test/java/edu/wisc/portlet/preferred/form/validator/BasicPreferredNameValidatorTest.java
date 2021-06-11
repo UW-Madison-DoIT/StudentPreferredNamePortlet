@@ -81,6 +81,8 @@ public class BasicPreferredNameValidatorTest {
     PreferredNameExtended pne = new PreferredNameExtended();
     pne.setMiddleName(null);
 
+    validator.validate(pne, bn);
+
     assertFalse(bn.hasFieldErrors("middleName"));
   }
 

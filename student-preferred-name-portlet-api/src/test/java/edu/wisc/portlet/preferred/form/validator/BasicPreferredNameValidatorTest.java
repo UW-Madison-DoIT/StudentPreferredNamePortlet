@@ -66,7 +66,6 @@ public class BasicPreferredNameValidatorTest {
 
   @Test
   public void rejectsPreferredFirstNamesLongerThan30Characters() {
-    Validator validator = new Latin9PreferredNameValidator();
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     PreferredNameExtended pne = new PreferredNameExtended();
     pne.setFirstName("abcdefghijklmnopqrstuvwxyzabcde"); // 26 + 5 = 31 characters
@@ -78,7 +77,6 @@ public class BasicPreferredNameValidatorTest {
 
   @Test
   public void preferredMiddleNameIsOptional() {
-    Validator validator = new Latin9PreferredNameValidator();
     BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
     PreferredNameExtended pne = new PreferredNameExtended();
     pne.setMiddleName(null);

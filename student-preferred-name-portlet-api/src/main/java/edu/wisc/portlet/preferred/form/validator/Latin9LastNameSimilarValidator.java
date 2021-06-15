@@ -25,7 +25,17 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     String preferredLastName = pne.getLastName();
     String legalLastName = pne.getLegalLastName();
 
-    if ((preferredLastName != null) && (! preferredLastName.equalsIgnoreCase(legalLastName))) {
+    if (preferredLastName == null) {
+      return; // short circuit validation
+    }
+
+    // delete out ignored characters for purposes of evaluating similarity
+    preferredLastName = preferredLastName.replace("-", ""); // ignore hyphens
+    legalLastName = legalLastName.replace("-", "");
+    preferredLastName = preferredLastName.replace(" ", ""); // ignore space characters
+    legalLastName = legalLastName.replace(" ", "");
+
+    if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");
     }
 

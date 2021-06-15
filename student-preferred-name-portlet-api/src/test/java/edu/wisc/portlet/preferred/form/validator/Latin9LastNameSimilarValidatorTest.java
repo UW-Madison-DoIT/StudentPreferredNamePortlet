@@ -79,4 +79,31 @@ public class Latin9LastNameSimilarValidatorTest {
     assertFalse (br.hasErrors());
   }
 
+  @Test
+  public void addingAHyphenMinusIsValid() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLastName("Dunning-Kruger"); // hyphen-minus, the most common hyphen, is permissible in a preferred last name
+    pne.setLegalLastName("DUNNINGKRUGER"); // even if not present in the legal last name
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for having added a hyphen should be valid.", br.hasErrors());
+  }
+
+  @Test
+  public void removingAHyphenMinusIsValid() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLastName("Lloyd Webber"); // this last name does not have a hyphen
+    pne.setLegalLastName("LLOYD-WEBBER"); // though the formal title for the right honourable lord does
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for having removed a hyphen in favor of a space should be valid", br.hasErrors());
+  }
 }

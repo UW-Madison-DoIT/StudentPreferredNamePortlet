@@ -6,6 +6,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetEncoder;
+
 /**
  * Validator implementing validation of the LATIN-9 character set.
  * Validates instances of PreferredNameExtended.
@@ -17,6 +20,10 @@ import org.springframework.validation.Validator;
  * Validations implemented:
  *
  * field:error:condition
+ *
+ * firstName : error.not-latin-9 : if contains a character outside Latin9 character set.
+ * middleName : error.not-latin-9 : if contains a character outside Latin9 character set.
+ * lastName : error.not-latin-9 : if contains a character outside Latin9 character set.
  *
  */
 public class Latin9PreferredNameValidator
@@ -36,6 +43,28 @@ public class Latin9PreferredNameValidator
     }
 
     PreferredNameExtended pne = (PreferredNameExtended) target;
+
+
+    Charset iso_8859_15 = Charset.forName("ISO-8859-15");
+    CharsetEncoder iso_8859_15_encoder = iso_8859_15.newEncoder();
+
+    if (null != pne.getFirstName()) {
+      if (! iso_8859_15_encoder.canEncode(pne.getFirstName())) {
+        errors.rejectValue("firstName", "error.not-latin-9");
+      }
+    }
+
+    if (null != pne.getMiddleName()) {
+      if (! iso_8859_15_encoder.canEncode(pne.getMiddleName())) {
+        errors.rejectValue("middleName", "error.not-latin-9");
+      }
+    }
+
+    if (null != pne.getLastName()) {
+      if (! iso_8859_15_encoder.canEncode(pne.getLastName())) {
+        errors.rejectValue("lastName", "error.not-latin-9");
+      }
+    }
 
   }
 }

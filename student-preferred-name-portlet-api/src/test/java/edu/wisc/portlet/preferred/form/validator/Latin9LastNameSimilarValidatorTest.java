@@ -61,4 +61,22 @@ public class Latin9LastNameSimilarValidatorTest {
 
   }
 
+
+  /**
+   * Test that people may prefer a different capitalization of their last name.
+   */
+  @Test
+  public void differentCapitalizationIsValid() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLastName("Badger"); // a person would likely prefer this typical capitalization
+    pne.setLegalLastName("BADGER"); // but legal names are typically in SHOUTY CASE
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse (br.hasErrors());
+  }
+
 }

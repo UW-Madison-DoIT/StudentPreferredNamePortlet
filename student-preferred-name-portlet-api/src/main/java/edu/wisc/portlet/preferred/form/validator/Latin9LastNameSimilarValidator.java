@@ -25,7 +25,7 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     String preferredLastName = pne.getLastName();
     String legalLastName = pne.getLegalLastName();
 
-    if ((preferredLastName != null) && (! preferredLastName.equals(legalLastName))) {
+    if ((preferredLastName != null) && (! preferredLastName.equalsIgnoreCase(legalLastName))) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");
     }
 

@@ -175,5 +175,21 @@ public class Latin9PreferredNameValidatorTest {
       ValidatorTestSupport.fieldHasError("middleName", "error.not-latin-9", bindingResult));
   }
 
+  @Test
+  public void rejectsMaureenOHara() {
+
+    // Maureen
+
+    BindingResult bindingResult = new MapBindingResult(new HashMap<String, String>(), "pn");
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setFirstName("Maureen");
+    pne.setLastName("O’Hara"); // will be rejected because uses U+2019 apostrophe rather than single quote
+
+    validator.validate(pne, bindingResult);
+
+    assertTrue("Alas only single quote for apostrophes are supported in LATIN-9, so last name validation of O’Hara should have failed.",
+      ValidatorTestSupport.fieldHasError("lastName", "error.not-latin-9", bindingResult));
+  }
 
 }

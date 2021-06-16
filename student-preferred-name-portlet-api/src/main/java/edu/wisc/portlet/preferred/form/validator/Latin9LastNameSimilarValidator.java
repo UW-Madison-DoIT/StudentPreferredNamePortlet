@@ -37,9 +37,33 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     preferredLastName = preferredLastName.replace("'", ""); // ignore single quote characters
     legalLastName = legalLastName.replace("'", "");
 
+    String validUChars = "ÙÚÛÜùúûü";
+
+    preferredLastName = normalizeCharacterFamily(preferredLastName, validUChars, "u");
+    legalLastName = normalizeCharacterFamily(legalLastName, validUChars, "u");
+
     if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");
     }
 
+  }
+
+  /**
+   * Return a String that is name except with any instances of normalizeFrom within name replaced with normalizeTo.
+   * Intended usage is to normalize accented characters to their un-accented versions to create strings suitable for
+   * comparison.
+   *
+   * @param name
+   * @param normalizeFrom
+   * @param normalizeTo
+   * @return String that is name with characters in normalizeFrom replaced with normalizeTo
+   */
+  public static String normalizeCharacterFamily(String name, String normalizeFrom, String normalizeTo) {
+
+    for (int i = 0; i < normalizeFrom.length(); i++) {
+      name = name.replace(String.valueOf(normalizeFrom.charAt(i)), normalizeTo);
+    }
+
+    return name;
   }
 }

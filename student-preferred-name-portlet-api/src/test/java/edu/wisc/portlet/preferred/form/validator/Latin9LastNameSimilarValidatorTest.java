@@ -179,4 +179,32 @@ public class Latin9LastNameSimilarValidatorTest {
     assertFalse ("A preferred last name differing from a legal last name for having added a quote should be valid", br.hasErrors());
   }
 
+  /**
+   * Tests that u is interchangeable with Ù,Ú,Û,Ü and their lowercase versions.
+   */
+  @Test
+  public void substitutingAccentedUIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("ÙÚÛÜUùúûüu"); // preferring any version of U in place of any other version of U is permitted
+
+    pne.setLegalLastName("uÙûÛùÜUÚúü");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for using different accents on U", br.hasErrors());
+  }
+
+  @Test
+  public void normalizeToReplacesCharacters() {
+    String someString = "Wölfgàng Ämãdéùs Mozart";
+
+    someString = Latin9LastNameSimilarValidator.normalizeCharacterFamily(someString, "àãÄ", "a");
+    someString = Latin9LastNameSimilarValidator.normalizeCharacterFamily(someString, "é", "e");
+    someString = Latin9LastNameSimilarValidator.normalizeCharacterFamily(someString, "ö", "o");
+    someString = Latin9LastNameSimilarValidator.normalizeCharacterFamily(someString, "ù", "u");
+    assertEquals("Wolfgang amadeus Mozart", someString);
+  }
 }

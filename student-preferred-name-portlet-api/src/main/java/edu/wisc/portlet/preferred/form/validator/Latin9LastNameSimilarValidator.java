@@ -39,6 +39,11 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     preferredLastName = normalizeCharacterFamily(preferredLastName, validAChars, "a");
     legalLastName = normalizeCharacterFamily(legalLastName, validAChars, "a");
 
+    String validNChars = "Ññ";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, validNChars, "n");
+    legalLastName = normalizeCharacterFamily(legalLastName, validNChars, "n");
+
+
     String validOChars = "ÒÓÔÕÖØòóôõöø";
     preferredLastName = normalizeCharacterFamily(preferredLastName, validOChars, "o");
     legalLastName = normalizeCharacterFamily(legalLastName, validOChars, "o");

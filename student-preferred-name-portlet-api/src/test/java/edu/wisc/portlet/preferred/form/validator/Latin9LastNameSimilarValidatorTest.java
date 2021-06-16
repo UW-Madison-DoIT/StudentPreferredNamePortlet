@@ -249,6 +249,37 @@ public class Latin9LastNameSimilarValidatorTest {
 
   }
 
+  @Test
+  public void bartoloColónMayPreferAccuteAcent() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("Colón");
+    pne.setLegalLastName("Colon");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Someone with legal last name Colon may prefer to present as Colón", br.hasErrors());
+  }
+
+  @Test
+  public void eduardoNύñezMayPreferNWithTilde() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("Nuñez");
+    pne.setLegalLastName("Nunez");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Someone with legal last name Nunez may prefer to present as Nuñez", br.hasErrors());
+
+  }
+
 
   @Test
   public void normalizeToReplacesCharacters() {

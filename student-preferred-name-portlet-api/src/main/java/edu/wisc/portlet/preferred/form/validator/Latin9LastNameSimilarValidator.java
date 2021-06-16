@@ -34,6 +34,8 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     legalLastName = legalLastName.replace("-", "");
     preferredLastName = preferredLastName.replace(" ", ""); // ignore space characters
     legalLastName = legalLastName.replace(" ", "");
+    preferredLastName = preferredLastName.replace("'", ""); // ignore single quote characters
+    legalLastName = legalLastName.replace("'", "");
 
     if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");

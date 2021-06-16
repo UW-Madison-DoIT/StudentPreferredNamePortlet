@@ -139,4 +139,44 @@ public class Latin9LastNameSimilarValidatorTest {
     assertFalse ("A preferred last name differing from a legal last name for having added a space should be valid", br.hasErrors());
   }
 
+  /**
+   * Test that a preferred last name may differ from a legal last name by removing single quotes.
+   */
+  @Test
+  public void removingSingleQuoteIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setFirstName("Maureen");
+    pne.setLegalFirstName("Maureen");
+
+    pne.setLastName("OHara"); // preferring to remove a quote character is permissible
+    pne.setLegalLastName("O'Hara");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for having removed a quote should be valid", br.hasErrors());
+  }
+
+  /**
+   * Test that a preferred last name may differ from a legal last name by adding single quotes.
+   */
+  @Test
+  public void addingSingleQuoteIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setFirstName("Maureen");
+    pne.setLegalFirstName("Maureen");
+
+    pne.setLastName("O'Hara"); // preferring to add a quote character is permissible
+    pne.setLegalLastName("OHara");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for having added a quote should be valid", br.hasErrors());
+  }
+
 }

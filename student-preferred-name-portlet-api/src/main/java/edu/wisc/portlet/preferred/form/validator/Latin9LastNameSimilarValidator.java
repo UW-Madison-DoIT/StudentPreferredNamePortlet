@@ -42,6 +42,10 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     preferredLastName = normalizeCharacterFamily(preferredLastName, validUChars, "u");
     legalLastName = normalizeCharacterFamily(legalLastName, validUChars, "u");
 
+    String validYChars = "Ýýÿ";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, validYChars, "y");
+    legalLastName = normalizeCharacterFamily(legalLastName, validYChars, "y");
+
     if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");
     }

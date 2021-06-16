@@ -198,6 +198,20 @@ public class Latin9LastNameSimilarValidatorTest {
   }
 
   @Test
+  public void substitutingAccentedYIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("ÝýyýÝyÿ"); // preferring any version of Y in place of any other version of Y is permitted
+    pne.setLegalLastName("YýyÝýÝy");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for using different accents on Y should be valid", br.hasErrors());
+  }
+
+  @Test
   public void normalizeToReplacesCharacters() {
     String someString = "Wölfgàng Ämãdéùs Mozart";
 

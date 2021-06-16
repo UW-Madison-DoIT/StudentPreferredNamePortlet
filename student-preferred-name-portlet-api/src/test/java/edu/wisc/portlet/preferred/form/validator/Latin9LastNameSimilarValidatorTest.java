@@ -106,4 +106,37 @@ public class Latin9LastNameSimilarValidatorTest {
 
     assertFalse ("A preferred last name differing from a legal last name for having removed a hyphen in favor of a space should be valid", br.hasErrors());
   }
+
+  /**
+   * Test that a preferred last name may differ from a legal last name by having added spaces.
+   */
+  @Test
+  public void addingSpaceIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLastName("Lloyd Webber"); // preferring an embedded space is permissible
+    pne.setLegalLastName("LLOYDWEBBER");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for having added a space should be valid", br.hasErrors());
+  }
+
+  /**
+   * Test that a preferred last name may differ from a legal last name by removing spaces.
+   */
+  @Test
+  public void removingSpaceIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLastName("Lloyd Webber"); // preferring an embedded space is permissible
+    pne.setLegalLastName("LLOYDWEBBER");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for having added a space should be valid", br.hasErrors());
+  }
+
 }

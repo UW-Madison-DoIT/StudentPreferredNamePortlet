@@ -37,8 +37,11 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     preferredLastName = preferredLastName.replace("'", ""); // ignore single quote characters
     legalLastName = legalLastName.replace("'", "");
 
-    String validUChars = "ÙÚÛÜùúûü";
+    String validAChars = "ÀÁÂÃÄÅàáâãäå";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, validAChars, "a");
+    legalLastName = normalizeCharacterFamily(legalLastName, validAChars, "a");
 
+    String validUChars = "ÙÚÛÜùúûü";
     preferredLastName = normalizeCharacterFamily(preferredLastName, validUChars, "u");
     legalLastName = normalizeCharacterFamily(legalLastName, validUChars, "u");
 

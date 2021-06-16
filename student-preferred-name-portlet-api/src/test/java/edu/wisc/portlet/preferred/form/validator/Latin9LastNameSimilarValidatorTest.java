@@ -180,6 +180,25 @@ public class Latin9LastNameSimilarValidatorTest {
   }
 
   /**
+   * Tests that a (or A) is interchangeable with À,Á,Â,Ã,Ä,Å,à,á,â,ã,ä,å.
+   */
+  @Test
+  public void substitutingAccentedAIsValid() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    // "ÀÁÂÃÄÅàáâãäå"
+
+    pne.setLastName("ÀÁÂÃÄÅAàáâãäåa"); // preferring any version of A in place of any other version of A is permitted
+    pne.setLegalLastName("aåäãâáàAÅÄÃÂÁÀ");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("A preferred last name differing from a legal last name for using different accents on A", br.hasErrors());
+  }
+
+  /**
    * Tests that u is interchangeable with Ù,Ú,Û,Ü and their lowercase versions.
    */
   @Test

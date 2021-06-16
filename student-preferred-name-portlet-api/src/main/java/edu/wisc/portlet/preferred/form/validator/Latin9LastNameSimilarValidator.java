@@ -30,13 +30,11 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     }
 
     // delete out ignored characters for purposes of evaluating similarity
-    preferredLastName = preferredLastName.replace("-", ""); // ignore hyphens
-    legalLastName = legalLastName.replace("-", "");
-    preferredLastName = preferredLastName.replace(" ", ""); // ignore space characters
-    legalLastName = legalLastName.replace(" ", "");
-    preferredLastName = preferredLastName.replace("'", ""); // ignore single quote characters
-    legalLastName = legalLastName.replace("'", "");
+    String ignoredCharacters = "- '";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, ignoredCharacters, "");
+    legalLastName = normalizeCharacterFamily(legalLastName, ignoredCharacters, "");
 
+    // normalize accented characters to their un-accented forms
     String validAChars = "ÀÁÂÃÄÅàáâãäå";
     preferredLastName = normalizeCharacterFamily(preferredLastName, validAChars, "a");
     legalLastName = normalizeCharacterFamily(legalLastName, validAChars, "a");

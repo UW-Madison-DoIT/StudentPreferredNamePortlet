@@ -230,6 +230,26 @@ public class Latin9LastNameSimilarValidatorTest {
     assertFalse ("A preferred last name differing from a legal last name for using different accents on Y should be valid", br.hasErrors());
   }
 
+  /**
+   * Delmar Tarragó may prefer the accent on the o of the last name.
+   * https://commonreader.wustl.edu/c/a-rose-by-any-other-name/
+   */
+  @Test
+  public void delmarTarragóMayPreferAccuteAccent() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("Tarragó");
+    pne.setLegalLastName("Tarrago");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Someone with legal last name Tarrago may prefer to present as Tarragó", br.hasErrors());
+
+  }
+
+
   @Test
   public void normalizeToReplacesCharacters() {
     String someString = "Wölfgàng Ämãdéùs Mozart";

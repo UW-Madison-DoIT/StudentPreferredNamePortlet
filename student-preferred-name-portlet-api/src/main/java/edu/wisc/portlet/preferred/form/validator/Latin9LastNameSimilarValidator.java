@@ -105,6 +105,15 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     preferredLastName = preferredLastName.replace("eo", "d");
     legalLastName = legalLastName.replace("eo", "d");
 
+    // map ß to ss
+    preferredLastName.replace("ß", "ss");
+    legalLastName.replace("ß", "ss");
+
+    // however, ß can also map to sz, so
+    // convert all sz to ss so if it was differently mapped it will still match.
+    preferredLastName.replace("sz", "ss");
+    legalLastName.replace("sz", "ss");
+
     if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");
     }

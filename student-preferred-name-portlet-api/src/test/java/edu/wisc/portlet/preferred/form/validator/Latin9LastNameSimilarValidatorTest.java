@@ -308,6 +308,20 @@ public class Latin9LastNameSimilarValidatorTest {
     assertFalse ("Someone with legal last name Francois may prefer to present as François", br.hasErrors());
   }
 
+  @Test
+  public void pinkMayUseExclamationPointInPlaceOfI() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("P!nk");
+    pne.setLegalLastName("PINK");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Someone with legal last name PINK may prefer to present as P!nk", br.hasErrors());
+
+  }
 
   @Test
   public void normalizeToReplacesCharacters() {

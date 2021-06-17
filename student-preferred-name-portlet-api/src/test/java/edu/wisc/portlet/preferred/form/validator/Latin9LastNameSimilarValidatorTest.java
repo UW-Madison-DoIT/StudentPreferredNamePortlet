@@ -337,6 +337,22 @@ public class Latin9LastNameSimilarValidatorTest {
   }
 
   @Test
+  public void supportBjörk() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setFirstName("Björk");
+    pne.setLastName("Guðmundsdóttir"); // Actual name
+    pne.setLegalLastName("Gudmundsdottir"); // A legal name system might not accomodate the accents
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Last name Guðmundsdóttir should be permitted", br.hasErrors());
+  }
+
+  @Test
   public void normalizeToReplacesCharacters() {
     String someString = "Wölfgàng Ämãdéùs Mozart";
 

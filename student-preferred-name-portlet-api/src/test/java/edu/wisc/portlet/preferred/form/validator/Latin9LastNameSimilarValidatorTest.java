@@ -320,7 +320,20 @@ public class Latin9LastNameSimilarValidatorTest {
     validator.validate(pne, br);
 
     assertFalse ("Someone with legal last name PINK may prefer to present as P!nk", br.hasErrors());
+  }
 
+  @Test
+  public void keshaMayUseDollarSign() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("Kesha"); // Currently Kesha stylizes in this way
+    pne.setLegalLastName("Ke$ha"); // Kesha previously stylized in this way before she didn't
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Someone with legal last name Ke$ha may prefer to present as Kesha", br.hasErrors());
   }
 
   @Test

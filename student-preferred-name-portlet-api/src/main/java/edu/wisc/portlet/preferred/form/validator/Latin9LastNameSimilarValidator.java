@@ -43,6 +43,10 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsC, "c");
     legalLastName = normalizeCharacterFamily(legalLastName, sameAsC, "c");
 
+    String sameAsD = "Ðð";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsD, "d");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsD, "d");
+
     String sameAsE = "ÈÉÊËèéêëŒœ";
     preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsE, "e");
     legalLastName = normalizeCharacterFamily(legalLastName, sameAsE, "e");
@@ -85,6 +89,17 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     // So, map remaining instances of "oe" to "e" so that these will match.
     preferredLastName = preferredLastName.replace("oe", "e");
     legalLastName = legalLastName.replace("oe", "e");
+
+    // ð may be represented as edh but was mapped to d above.
+    // So, map remaining edh to d so that these will match.
+    preferredLastName = preferredLastName.replace("edh", "d");
+    legalLastName = legalLastName.replace("edh", "d");
+
+    // ð may be represented as eð but was mapped to d above.
+    // eð will have been mapped to eo above
+    // So, map remaining eo to d so that these will match.
+    preferredLastName = preferredLastName.replace("eo", "d");
+    legalLastName = legalLastName.replace("eo", "d");
 
     if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");

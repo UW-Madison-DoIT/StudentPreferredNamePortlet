@@ -35,26 +35,52 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
     legalLastName = normalizeCharacterFamily(legalLastName, ignoredCharacters, "");
 
     // normalize accented characters to their un-accented forms
-    String validAChars = "ÀÁÂÃÄÅàáâãäå";
-    preferredLastName = normalizeCharacterFamily(preferredLastName, validAChars, "a");
-    legalLastName = normalizeCharacterFamily(legalLastName, validAChars, "a");
+    String sameAsA = "ÀÁÂÃÄÅàáâãäå";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsA, "a");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsA, "a");
 
-    String validNChars = "Ññ";
-    preferredLastName = normalizeCharacterFamily(preferredLastName, validNChars, "n");
-    legalLastName = normalizeCharacterFamily(legalLastName, validNChars, "n");
+    String sameAsE = "ÈÉÊËèéêëŒœ";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsE, "e");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsE, "e");
 
+    String sameAsN = "Ññ";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsN, "n");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsN, "n");
 
-    String validOChars = "ÒÓÔÕÖØòóôõöø";
-    preferredLastName = normalizeCharacterFamily(preferredLastName, validOChars, "o");
-    legalLastName = normalizeCharacterFamily(legalLastName, validOChars, "o");
+    String sameASI = "ÌÍÎÏìíîï";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameASI, "i");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameASI, "i");
 
-    String validUChars = "ÙÚÛÜùúûü";
-    preferredLastName = normalizeCharacterFamily(preferredLastName, validUChars, "u");
-    legalLastName = normalizeCharacterFamily(legalLastName, validUChars, "u");
+    String sameAsO = "ÒÓÔÕÖØòóôõöø";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsO, "o");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsO, "o");
 
-    String validYChars = "Ýýÿ";
-    preferredLastName = normalizeCharacterFamily(preferredLastName, validYChars, "y");
-    legalLastName = normalizeCharacterFamily(legalLastName, validYChars, "y");
+    String sameAsS = "Šš";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsS, "s");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsS, "s");
+
+    String sameAsU = "ÙÚÛÜùúûü";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsU, "u");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsU, "u");
+
+    String sameAsY = "ŸÝýÿ";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsY, "y");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsY, "y");
+
+    String sameAsZ = "Žž";
+    preferredLastName = normalizeCharacterFamily(preferredLastName, sameAsZ, "z");
+    legalLastName = normalizeCharacterFamily(legalLastName, sameAsZ, "z");
+
+    // in Finnish and Estonian, ž may be written as zh where the accented character is unavailable.
+    // however, above this validator would have mapped it to z.
+    // So, map remaining instances of zh to z so they will match a ž that was mapped to z.
+    preferredLastName = preferredLastName.replace("zh", "z");
+    legalLastName = legalLastName.replace("zh", "z");
+
+    // œ may be represented as e or as oe, and was mapped to e above.
+    // So, map remaining instances of "oe" to "e" so that these will match.
+    preferredLastName = preferredLastName.replace("oe", "e");
+    legalLastName = legalLastName.replace("oe", "e");
 
     if (! preferredLastName.equalsIgnoreCase(legalLastName)) {
       errors.rejectValue("lastName", "error.notSimilarToLegalName");

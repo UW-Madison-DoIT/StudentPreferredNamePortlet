@@ -280,6 +280,22 @@ public class Latin9LastNameSimilarValidatorTest {
 
   }
 
+  @Test
+  public void mariaLúciaMayPreferAccentedU() {
+
+    PreferredNameExtended pne = new PreferredNameExtended();
+
+    pne.setLastName("Lúcia");
+    pne.setLegalLastName("Lucia");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    assertFalse ("Someone with legal last name Lucia may prefer to present as Lúcia", br.hasErrors());
+
+  }
+
 
   @Test
   public void normalizeToReplacesCharacters() {

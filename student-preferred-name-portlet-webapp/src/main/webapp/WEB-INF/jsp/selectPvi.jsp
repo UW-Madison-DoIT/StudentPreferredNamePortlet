@@ -38,7 +38,7 @@
 			<span>${error}</span>
 		</div>
 	</c:if>
-	
+
 	<c:if test="${!empty info }">
 		<div class="info">
 			<span>${info}</span>
@@ -75,7 +75,7 @@
 			  			<input class="uportal-button fancy-button" value="${search}" type="submit">
 			  		</span>
 		  		</div>
-		  		
+
 	  		</div>
 	  	</div>
 	</form>

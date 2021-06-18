@@ -9,6 +9,8 @@ import javax.portlet.PortletModeException;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 
+import edu.wisc.portlet.preferred.form.validator.*;
+import edu.wisc.portlet.preferred.service.UnleashService;
 import org.jasig.springframework.security.portlet.authentication.PrimaryAttributeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,6 @@ import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.form.PreferredNameExtended;
-import edu.wisc.portlet.preferred.form.validator.PreferredNameValidator;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
 @Controller
@@ -29,6 +30,13 @@ import edu.wisc.portlet.preferred.service.PreferredNameService;
 public class PersonalInformationController {
 
     private PreferredNameService preferredNameService;
+
+    private UnleashService featureFlagService;
+
+    @Autowired
+    public void setFeatureFlagService(UnleashService unleashService) {
+      this.featureFlagService = unleashService;
+    }
 
     @Autowired
     public void setPreferredNameService(PreferredNameService pns) {
@@ -84,6 +92,11 @@ public class PersonalInformationController {
 
     @RenderMapping(params = "action=edit")
     public String initializeEdit(ModelMap modelMap, RenderRequest request) {
+
+      Map<String, String> userInfo =
+        (Map<String, String>) request.getAttribute(PortletRequest.USER_INFO);
+      String eppn = userInfo.get("eppn");
+
         if (!modelMap.containsKey("preferredName")) {
             final String pvi = PrimaryAttributeUtils.getPrimaryId();
             PreferredName preferredName = preferredNameService.getPreferredName(pvi);
@@ -94,6 +107,11 @@ public class PersonalInformationController {
                 modelMap.addAttribute("preferredName", new PreferredName());
             }
         }
+
+      boolean allowLatin9 = featureFlagService.featureFlagEnabledFor("preferred-name-allow-latin9", eppn, false );
+      boolean  allowDissimilarLastName = featureFlagService.featureFlagEnabledFor("preferred-name-allow-any-last-name", eppn, false );
+      modelMap.addAttribute("allowLatin9", allowLatin9);
+      modelMap.addAttribute("allowDissimilarLastName", allowDissimilarLastName);
 
         return "viewPage";
     }
@@ -106,17 +124,44 @@ public class PersonalInformationController {
     }
 
     @ActionMapping(params = "action=savePreferredName")
-    public void submitEdit(ActionRequest request, ActionResponse response,
+    public void submitEdit(ModelMap modelMap, ActionRequest request, ActionResponse response,
         PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
         final String pvi = PrimaryAttributeUtils.getPrimaryId();
         @SuppressWarnings("unchecked")
         Map<String, String> userInfo =
             (Map<String, String>) request.getAttribute(PortletRequest.USER_INFO);
+        String eppn = userInfo.get("eppn");
 
         PreferredNameExtended pne = new PreferredNameExtended(preferredName, userInfo.get("sn"));
 
-        //validation
-        ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bindingResult);
+        // Basic validation: fields within length limits, firstName is required.
+        ValidationUtils.invokeValidator(new PreferredNameLengthValidator(), pne, bindingResult);
+
+        // check feature flags to determine what additional validation
+        boolean allowLatin9 = featureFlagService.featureFlagEnabledFor("preferred-name-allow-latin9", eppn, false );
+        boolean  allowDissimilarLastName = featureFlagService.featureFlagEnabledFor("preferred-name-allow-any-last-name", eppn, false );
+        modelMap.addAttribute("allowLatin9", allowLatin9);
+        modelMap.addAttribute("allowDissimilarLastName", allowDissimilarLastName);
+
+
+        // Validate that within the supported character set. What set is supported depends on feature flag.
+        if (allowLatin9) {
+          ValidationUtils.invokeValidator(new Latin9PreferredNameValidator(), pne, bindingResult);
+        } else {
+          ValidationUtils.invokeValidator(new AlphaHyphenQuoteSpaceValidator(), pne, bindingResult);
+        }
+
+        // Optionally, validate that preferred last name is sufficiently similar to legal last name.
+        // How to do this depends on the character set
+
+        if (! allowDissimilarLastName) {
+          if (allowLatin9) {
+            ValidationUtils.invokeValidator(new Latin9LastNameSimilarValidator(), pne, bindingResult);
+          } else {
+            ValidationUtils.invokeValidator(new AlphaLastNameSimilarValidator(), pne, bindingResult);
+          }
+        }
+
         if (!bindingResult.hasErrors()) {
             //submit changes to DAO
 

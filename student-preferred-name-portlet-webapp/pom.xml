@@ -47,6 +47,10 @@
             <artifactId>commons-validator</artifactId>
         </dependency>
         <dependency>
+          <groupId>no.finn.unleash</groupId>
+          <artifactId>unleash-client-java</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
         </dependency>

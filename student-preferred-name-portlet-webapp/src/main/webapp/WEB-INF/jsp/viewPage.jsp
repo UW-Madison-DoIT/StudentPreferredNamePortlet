@@ -92,16 +92,24 @@
                               </span>
                               </div>
                             <div class="edit-name">
-                            <span class='label'>Last*</span>
+                            <span class='label'>Last</span>
                             <br/>
                             <span>
                                 <form:input aria-label="edit last name box" path="lastName" class="uportal-input-text ${n}last-name" maxlength="30" />
                             </span>
                             </div>
                           </div>
-                          <div class='info-text'>
-                            *<spring:message code='error.lastNameWeirdLogicError'/>
-                          </div>
+                          <c:if test="${! allowDissimilarLastName}">
+                            <div class='info-text'>
+                              <c:if test="${allowLatin9}">
+                                Preferred last name must be similar to legal last name. Capitalization, whitespace, hyphen, single quote, and accents are supported. More substantial changes are not generally supported.
+                              </c:if>
+                              <c:if test="${! allowLatin9}">
+                                Preferred last name may differ from legal last name only by capitalization, whitespace, hyphens, and single quotes.
+                              </c:if>
+                            </div>
+                          </c:if>
+
                           <div class="edit-buttons">
                               <span>
                                   <input class="uportal-button fancy-button btn btn-primary" value="${savePreferredName}" type="submit">
@@ -109,9 +117,9 @@
                               <span>
                                   <a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel btn btn-default"><spring:message code="button.cancel" text="Cancel"/></a>
                               </span>
-                              
+
                           </div>
-                          
+
                       </div>
                   </div>
               </spring:nestedPath>
@@ -136,12 +144,12 @@ var mname = "";
       fname = $(".${n}first-name").val();
       mname = $(".${n}middle-name").val();
       lname = $(".${n}last-name").val();
-      
+
       studentPreferredNamePortlet.displayEdit = function (enable) {
           if(enable) {
               $(".${n}edit").show();
               $(".${n}view").hide();
-              
+
           } else {
               $(".${n}edit").hide();
               $(".${n}edit-error").hide();
@@ -154,7 +162,7 @@ var mname = "";
               lname = "";
           }
       }
-   });            
+   });
 })(studentPreferredNamePortlet.jQuery);
 </script>
 
@@ -164,7 +172,7 @@ var mname = "";
    $(document).ready(function() {
        studentPreferredNamePortlet.displayEdit(true);
        $(".${n}edit-error").show().delay();
-   });            
-})(studentPreferredNamePortlet.jQuery);    
+   });
+})(studentPreferredNamePortlet.jQuery);
 </script>
 </c:if>

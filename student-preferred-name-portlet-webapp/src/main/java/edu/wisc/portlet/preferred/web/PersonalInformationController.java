@@ -92,6 +92,11 @@ public class PersonalInformationController {
 
     @RenderMapping(params = "action=edit")
     public String initializeEdit(ModelMap modelMap, RenderRequest request) {
+
+      Map<String, String> userInfo =
+        (Map<String, String>) request.getAttribute(PortletRequest.USER_INFO);
+      String eppn = userInfo.get("eppn");
+
         if (!modelMap.containsKey("preferredName")) {
             final String pvi = PrimaryAttributeUtils.getPrimaryId();
             PreferredName preferredName = preferredNameService.getPreferredName(pvi);
@@ -102,6 +107,11 @@ public class PersonalInformationController {
                 modelMap.addAttribute("preferredName", new PreferredName());
             }
         }
+
+      boolean allowLatin9 = featureFlagService.featureFlagEnabledFor("preferred-name-allow-latin9", eppn, false );
+      boolean  allowDissimilarLastName = featureFlagService.featureFlagEnabledFor("preferred-name-allow-any-last-name", eppn, false );
+      modelMap.addAttribute("allowLatin9", allowLatin9);
+      modelMap.addAttribute("allowDissimilarLastName", allowDissimilarLastName);
 
         return "viewPage";
     }
@@ -114,7 +124,7 @@ public class PersonalInformationController {
     }
 
     @ActionMapping(params = "action=savePreferredName")
-    public void submitEdit(ActionRequest request, ActionResponse response,
+    public void submitEdit(ModelMap modelMap, ActionRequest request, ActionResponse response,
         PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
         final String pvi = PrimaryAttributeUtils.getPrimaryId();
         @SuppressWarnings("unchecked")
@@ -130,6 +140,9 @@ public class PersonalInformationController {
         // check feature flags to determine what additional validation
         boolean allowLatin9 = featureFlagService.featureFlagEnabledFor("preferred-name-allow-latin9", eppn, false );
         boolean  allowDissimilarLastName = featureFlagService.featureFlagEnabledFor("preferred-name-allow-any-last-name", eppn, false );
+        modelMap.addAttribute("allowLatin9", allowLatin9);
+        modelMap.addAttribute("allowDissimilarLastName", allowDissimilarLastName);
+
 
         // Validate that within the supported character set. What set is supported depends on feature flag.
         if (allowLatin9) {
@@ -148,7 +161,7 @@ public class PersonalInformationController {
             ValidationUtils.invokeValidator(new AlphaLastNameSimilarValidator(), pne, bindingResult);
           }
         }
-        
+
         if (!bindingResult.hasErrors()) {
             //submit changes to DAO
 

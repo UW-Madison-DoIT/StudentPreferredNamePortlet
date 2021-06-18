@@ -125,12 +125,18 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
    * Intended usage is to normalize accented characters to their un-accented versions to create strings suitable for
    * comparison.
    *
+   * Given null, returns null.
+   *
    * @param name
    * @param normalizeFrom
    * @param normalizeTo
    * @return String that is name with characters in normalizeFrom replaced with normalizeTo
    */
   public static String normalizeCharacterFamily(String name, String normalizeFrom, String normalizeTo) {
+
+    if (name == null) {
+      return null;
+    }
 
     for (int i = 0; i < normalizeFrom.length(); i++) {
       name = name.replace(String.valueOf(normalizeFrom.charAt(i)), normalizeTo);

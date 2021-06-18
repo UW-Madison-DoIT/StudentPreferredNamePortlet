@@ -353,6 +353,12 @@ public class Latin9LastNameSimilarValidatorTest {
   }
 
   @Test
+  public void normalizingNullReturnsNull() {
+    assertNull("Null should normalize to null.",
+    Latin9LastNameSimilarValidator.normalizeCharacterFamily(null, "chars", "otherchars"));
+  }
+
+  @Test
   public void normalizeToReplacesCharacters() {
     String someString = "Wölfgàng Ämãdéùs Mozart";
 

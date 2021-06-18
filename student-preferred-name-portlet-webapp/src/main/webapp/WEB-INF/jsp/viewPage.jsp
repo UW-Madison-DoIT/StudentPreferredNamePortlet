@@ -101,7 +101,7 @@
                           </div>
                         <div class='info-text'>
                           <c:choose>
-                            <c:when test="#{allowLatin9}">
+                            <c:when test="${allowLatin9}">
                               Preferred name supports the <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-15" target="_blank">Latin-9 (ISO 8859-15) character set</a>. In general this means many accented characters are supported.
                             </c:when>
                             <c:otherwise>
@@ -111,12 +111,16 @@
                         </div>
                           <c:if test="${! allowDissimilarLastName}">
                             <div class='info-text'>
-                              <c:if test="${allowLatin9}">
-                                Preferred last name must be similar to legal last name. Capitalization, whitespace, hyphen, single quote, and accents are supported. More substantial changes are not generally supported.
-                              </c:if>
-                              <c:if test="${! allowLatin9}">
-                                Preferred last name may differ from legal last name only by capitalization, whitespace, hyphens, and single quotes.
-                              </c:if>
+                              Preferred last name must be similar to legal last name.
+                              <c:choose>
+                                <c:when test="${allowLatin9}">
+                                  Changes to capitalization, whitespace, hyphen, single quote, and accents are supported.
+                                  More substantial changes are not generally supported.
+                                </c:when>
+                                <c:otherwise>
+                                  Only changes to capitalization, whitespace, hyphens, and single quotes are supported.
+                                </c:otherwise>
+                              </c:choose>
                             </div>
                           </c:if>
 

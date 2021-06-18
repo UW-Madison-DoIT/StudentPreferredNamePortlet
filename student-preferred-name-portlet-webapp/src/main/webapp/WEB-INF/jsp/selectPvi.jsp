@@ -80,4 +80,9 @@
 	  	</div>
 	</form>
 	</div>
+  <div class='info-text'>
+    <a href="https://git.doit.wisc.edu/wps/myuw-service/myuw-legacy/legacy-portals/-/feature_flags" target="_blank">
+      Configure character set and last name similarity requirement</a>
+    in GitLab as feature flags.
+  </div>
 </div>

@@ -13,6 +13,7 @@ public class UnleashService {
     .appName("preferred-name")
     .instanceId("PyLv_n7aPmgqMWTua6Fd")
     .unleashAPI("https://git.doit.wisc.edu/api/v4/feature_flags/unleash/8855")
+    .synchronousFetchOnInitialisation(true)
     .build();
 
   Unleash unleash = new DefaultUnleash(unleashConfig);

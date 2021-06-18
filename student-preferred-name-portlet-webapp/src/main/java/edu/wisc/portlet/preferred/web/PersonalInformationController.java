@@ -133,11 +133,7 @@ public class PersonalInformationController {
         String eppn = userInfo.get("eppn");
         String legalLastName = userInfo.get("wiscEduSORLastName");
 
-        PreferredNameExtended pne = this.preferredNameService.getPreferredNameAndLegalName(pvi, legalLastName);
-
-        pne.setFirstName(preferredName.getFirstName());
-        pne.setMiddleName(preferredName.getMiddleName());
-        pne.setLastName(preferredName.getLastName());
+        PreferredNameExtended pne = new PreferredNameExtended(preferredName, legalLastName);
 
         // Basic validation: fields within length limits, firstName is required.
         ValidationUtils.invokeValidator(new PreferredNameLengthValidator(), pne, bindingResult);

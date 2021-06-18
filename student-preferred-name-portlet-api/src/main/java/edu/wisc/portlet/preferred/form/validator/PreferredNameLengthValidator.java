@@ -17,7 +17,7 @@ import org.springframework.validation.Validator;
  * middleName : error.toolong : when > 30 characters
  * lastName : error.tooLong: when > 30 characters
  */
-public class BasicPreferredNameValidator implements Validator {
+public class PreferredNameLengthValidator implements Validator {
 
   @Override
   public boolean supports(Class<?> clazz) {

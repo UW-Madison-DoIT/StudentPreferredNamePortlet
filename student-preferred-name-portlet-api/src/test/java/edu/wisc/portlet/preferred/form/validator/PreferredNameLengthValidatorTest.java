@@ -11,9 +11,9 @@ import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
-public class BasicPreferredNameValidatorTest {
+public class PreferredNameLengthValidatorTest {
 
-  Validator validator = new BasicPreferredNameValidator();
+  Validator validator = new PreferredNameLengthValidator();
 
   /**
    * Test that the validator supports validating PreferredNameExtended.

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class UnleashService {
 
   UnleashConfig unleashConfig = UnleashConfig.builder()
+    .appName("preferred-name")
     .instanceId("PyLv_n7aPmgqMWTua6Fd")
     .unleashAPI("https://git.doit.wisc.edu/api/v4/feature_flags/unleash/8855")
     .build();

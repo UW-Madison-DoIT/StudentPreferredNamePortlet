@@ -353,6 +353,20 @@ public class Latin9LastNameSimilarValidatorTest {
   }
 
   @Test
+  public void detectsNullLegalLastName() {
+    PreferredNameExtended pne = new PreferredNameExtended();
+    pne.setLegalLastName(null);
+    pne.setLastName("Bucky");
+
+    BindingResult br = new MapBindingResult(new HashMap<String, String>(), "pn");
+
+    validator.validate(pne, br);
+
+    ValidatorTestSupport.fieldHasError("lastName", "error.legalLastNameNull", br);
+
+  }
+
+  @Test
   public void normalizingNullReturnsNull() {
     assertNull("Null should normalize to null.",
     Latin9LastNameSimilarValidator.normalizeCharacterFamily(null, "chars", "otherchars"));

@@ -9,7 +9,8 @@ import org.springframework.validation.Validator;
  *
  * When the preferred lastName is not similar to the legal last name, sets validation failure
  *
- * lastName : error.notSimilarToLegalName
+ * lastName : error.notSimilarToLegalName ; when preferred last name not sufficiently similar to legal last name
+ * lastName : error.legalLastNameNull ; when legal last name is null
  */
 public class Latin9LastNameSimilarValidator  implements Validator  {
   @Override
@@ -24,6 +25,11 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
 
     String preferredLastName = pne.getLastName();
     String legalLastName = pne.getLegalLastName();
+
+    if (legalLastName == null) {
+      errors.rejectValue("lastName", "error.legalLastNameNull");
+      return; // short circuit validation
+    }
 
     if (preferredLastName == null) {
       return; // short circuit validation

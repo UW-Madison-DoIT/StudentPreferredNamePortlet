@@ -69,7 +69,7 @@ public class PersonalInformationController {
 
         modelMap.addAttribute("pendingStatus", preferredNameService.getStatus(
             new PreferredName(currentFirstName, currentMiddleName, currentLastName, pvi)));
-        modelMap.addAttribute("sirName", userInfo.get("sn"));
+        modelMap.addAttribute("sirName", userInfo.get("wiscEduSORLastName"));
         modelMap.addAttribute("legalName", userInfo.get("wiscEduSORName"));
 
 
@@ -131,8 +131,10 @@ public class PersonalInformationController {
         Map<String, String> userInfo =
             (Map<String, String>) request.getAttribute(PortletRequest.USER_INFO);
         String eppn = userInfo.get("eppn");
+        String legalLastName = userInfo.get("wiscEduSORLastName");
 
-        PreferredNameExtended pne = this.preferredNameService.getPreferredNameAndLegalName(pvi);
+        PreferredNameExtended pne = this.preferredNameService.getPreferredNameAndLegalName(pvi, legalLastName);
+
         pne.setFirstName(preferredName.getFirstName());
         pne.setMiddleName(preferredName.getMiddleName());
         pne.setLastName(preferredName.getLastName());

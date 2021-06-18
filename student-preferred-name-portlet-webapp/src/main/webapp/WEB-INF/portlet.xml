@@ -78,6 +78,9 @@
     <user-attribute>
         <name>sn</name>
     </user-attribute>
+  <user-attribute>
+    <name>wiscEduSORLastName</name>
+  </user-attribute>
     <user-attribute>
     	<name>wiscedupvi</name>
     </user-attribute>

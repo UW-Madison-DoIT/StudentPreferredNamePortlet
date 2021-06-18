@@ -40,18 +40,52 @@ Users can "Change" or "Delete" their preferred name.
 
 From the form, users can edit their preferred name.
 
-There's some form validation.
-The preferred last name can only be edited to a value that differs from the
-current preferred last name
-(or current system of record last name if no current preferred name)
-by capitalization, spacing, apostrophes, and hyphens.
-Using a different last name, etc., is not permitted.
+### Preferred name form validation
+
+There's some form validation. Exactly what validation depends on [feature flags](https://git.doit.wisc.edu/wps/myuw-service/myuw-legacy/legacy-portals/-/feature_flags).
+
+Always:
+
++ No part of the name (first, middle, or last) can be more than 30 characters.
++ *Preferred first name is required*, if there's a preferred name at all.
+
+#### Character set validation
+
+If the `preferred-name-allow-latin9` feature flag is *not* set,
+the preferred name form limits preferred names to the characters
+A-Z, a-z, single quote (`'`), hyphen (`-`), and space (` `).
+This excludes accented characters. (This is the historical behavior of preferred name).
+
+![Screenshot of Preferred Name portlet showing form validation fail on attempt to use the first name André](./media/preferred-name-disallowed-character.png)
+
+
+If the `preferred-name-allow-latin9` feature flag *is* set,
+the preferred name form limits preferred names to the [LATIN-9 character set](https://en.wikipedia.org/wiki/ISO/IEC_8859-15).
+In general this supports many but not all accented characters.
+
+#### Validating preferred last name similarity to legal last name
+
+If the `preferred-name-allow-any-last-name` feature flag is *not* set,
+the preferred name form attempts to require that the preferred *last name* be very similar to the legal last name.
+What "similar" means depends upon which character set is in use. Enforcing last name similarity in the form is the historical behavior.
+
+When *not* supporting Latin-9,
+similarity means differing only in capitalization,
+adding or removing spacing, adding or removing single quotes, and adding or removing hyphens.
 
 ![Screenshot of Preferred Name portlet showing an error on attempting to edit last name to a disallowed value](./media/preferred-name-disallowed-last-name.png)
 
-Also no part of the preferred name can have characters other than A-Z, a-z, spaces, apostrophes, and hyphens. Accented characters are not permitted.
+When supporting Latin-9, all those differences are allowed,
+and additionally plausible accents and some transliteration of digraphs are supported.
+For example, a person with a legal last name of NUNEZ could prefer last name Nuñez.
+A person with legal last name FRANCOIS could prefer last name François.
+The validator also attempts to honor things like German `ß` can be transliterated as `ss` or as `sz`.
+This validator is imperfect and should be enhanced as real world cases arise that it does not correctly support.
 
-![Screenshot of Preferred Name portlet showing form validation fail on attempt to use the first name André](./media/preferred-name-disallowed-character.png)
+If the `preferred-name-allow-any-last-name` feature flag *is* set,
+the form does not check for similarity between preferred and legal last names.
+
+
 
 ## Admin interface
 
@@ -72,11 +106,17 @@ In the administrative interface, an administrator can delete a preferred name.
 
 Administrators can also toggle whether to hide the primary/legal name (in directory search results?)
 
+Administrators [set the self-service form validation feature flags in git.doit](https://git.doit.wisc.edu/wps/myuw-service/myuw-legacy/legacy-portals/-/feature_flags),
+not directly in this within-MyUW administrative interface.
+
 ## Guts
 
 In `portlet.xml`, the portlet maps in several user attributes from the portal.
 
 ```xml
+   <user-attribute>
+     <name>eppn</name>
+   </user-attribute>
    <user-attribute>
         <name>sn</name>
     </user-attribute>
@@ -97,7 +137,11 @@ In `portlet.xml`, the portlet maps in several user attributes from the portal.
     </user-attribute>
 ```
 
-It uses these attributes to compute whether there's a pending preferred name change
+It includes `eppn` (EduPersonPrincipalName -- these look like email addresses) as the user identifier when computing applicability of form validation feature flags.
+That is, the feature flags can be narrowly targeted to specific eppns.
+
+
+It uses other attributes to compute whether there's a pending preferred name change
 
 ```java
   String currentFirstName = userInfo.get("wiscedupreferredfirstname");

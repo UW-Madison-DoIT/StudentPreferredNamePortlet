@@ -132,7 +132,10 @@ public class PersonalInformationController {
             (Map<String, String>) request.getAttribute(PortletRequest.USER_INFO);
         String eppn = userInfo.get("eppn");
 
-        PreferredNameExtended pne = new PreferredNameExtended(preferredName, userInfo.get("sn"));
+        PreferredNameExtended pne = this.preferredNameService.getPreferredNameAndLegalName(pvi);
+        pne.setFirstName(preferredName.getFirstName());
+        pne.setMiddleName(preferredName.getMiddleName());
+        pne.setLastName(preferredName.getLastName());
 
         // Basic validation: fields within length limits, firstName is required.
         ValidationUtils.invokeValidator(new PreferredNameLengthValidator(), pne, bindingResult);

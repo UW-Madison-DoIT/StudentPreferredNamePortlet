@@ -52,7 +52,7 @@
         <httpcore.version>4.2.3</httpcore.version>
         <jstl.version>1.2</jstl.version>
         <taglibs-standard.version>1.1.2</taglibs-standard.version>
-        <jackson.version>2.1.2</jackson.version>
+        <jackson.version>2.9.10.8</jackson.version>
         <jaxb2basics.version>0.6.4</jaxb2basics.version>
         <joda-time.version>2.1</joda-time.version>
         <jsp-api.version>2.1</jsp-api.version>

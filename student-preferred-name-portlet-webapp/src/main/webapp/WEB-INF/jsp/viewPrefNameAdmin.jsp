@@ -103,7 +103,7 @@
 					  			<a href="${ cancelAction }" class="uportal-button">Cancel</a>
 					  		</span>
 				  		</div>
-				  		
+
 			  		</div>
 			  	</div>
 		  	</spring:nestedPath>
@@ -114,7 +114,7 @@
 <script type="text/javascript">
 (function($) {
    $(document).ready(function() {
-	   
-   });			
-})(studentPreferredNamePortlet.jQuery);	
+
+   });
+})(studentPreferredNamePortlet.jQuery);
 </script>

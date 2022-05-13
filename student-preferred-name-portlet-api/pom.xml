@@ -6,7 +6,7 @@
     <version>2.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>student-preferred-name-portlet-api</artifactId>
-  
+
   <dependencies>
         <!-- ===== Compile Time Dependencies ============================== -->
         <dependency>
@@ -33,18 +33,18 @@
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>
         </dependency>
-       
+
     </dependencies>
-    
+
     <build>
         <plugins>
 
-            <!-- Generates JAXB binding classes -->            
+            <!-- Generates JAXB binding classes -->
             <plugin>
                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                 <artifactId>maven-jaxb2-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
-  
+
 </project>

@@ -4,6 +4,7 @@
 
 Currently building 2.0.0-SNAPSHOT.
 
++ Re-brand to Name in Use
 + Support Latin-9 character set, when feature flag `preferred-name-allow-latin9` is true.
   This is intended to support accent marks in preferred names, like André, François, Nuñez, etc.
 + Allow any preferred last name within the character set, when `preferred-name-allow-any-last-name` is true.

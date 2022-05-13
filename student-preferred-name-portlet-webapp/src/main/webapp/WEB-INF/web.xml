@@ -24,8 +24,8 @@
     xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     id="AdvisorReportsPortlet" version="2.5">
-    <display-name>Student Preferred Name Portlet</display-name>
-    
+    <display-name>Name in Use Portlet</display-name>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:/app-context/*.xml,/WEB-INF/context/*.xml</param-value>

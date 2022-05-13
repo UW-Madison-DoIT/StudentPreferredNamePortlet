@@ -59,7 +59,7 @@
                 </c:if>
                       &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
                       &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
-                      &nbsp;<a href="${deletePreferredNameURL}" onclick="return confirm('Are you sure you want to delete your preferred name?');"><spring:message code="delete"/></a>
+                      &nbsp;<a href="${deletePreferredNameURL}" onclick="return confirm('Are you sure you want to delete your Name in Use?');"><spring:message code="delete"/></a>
               </span>
           </div>
           <div class='edit-area'>
@@ -102,10 +102,10 @@
                         <div class='info-text'>
                           <c:choose>
                             <c:when test="${allowLatin9}">
-                              Preferred name supports the <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-15" target="_blank">Latin-9 (ISO 8859-15) character set</a>. In general this means many accented characters are supported.
+                              Name in Use supports the <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-15" target="_blank">Latin-9 (ISO 8859-15) character set</a>. In general this means many accented characters are supported.
                             </c:when>
                             <c:otherwise>
-                              Preferred name supports a limited character set. Only A-Z, a-z, space, single quote, and hyphen are supported.
+                              Name in Use supports a limited character set. Only A-Z, a-z, space, single quote, and hyphen are supported.
                             </c:otherwise>
                           </c:choose>
                         </div>

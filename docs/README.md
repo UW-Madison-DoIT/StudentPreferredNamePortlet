@@ -1,10 +1,12 @@
-# "Student" Preferred Name Portlet
+# Name in Use
+
+Previously known as Student Preferred Name Portlet.
 
 ## Not just for students
 
 There's nothing specifically "student" about the Preferred Name Portlet except
 that was its original name and branding.
-It continues to be available to students in MyUW as [Student Personal Information][], though the only "personal information" it shows is system of record name and preferred name.
+It continues to be available to students in MyUW as [Student Personal Information][], though the only "personal information" it shows is system-of-record-name and name-in-use.
 The identical code is also published under the name [Preferred Name][]
 and available to a wider audience including staff.
 Historically the staff-only [Madison "Personal Information" portlet][]
@@ -15,7 +17,7 @@ but hyperlinks to Preferred Name for preferred name editing.
 
 While Madison and System "Personal Information" are the same source code,
 they respond differently to Madison vs System identity information such that
-"Personal Information" only provided and provides a UI for preferred name for
+"Personal Information" only provides a UI for preferred name for
 Madison users.
 
 ## Architecture

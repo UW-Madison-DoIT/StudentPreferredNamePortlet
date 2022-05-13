@@ -3,24 +3,24 @@
   <parent>
     <groupId>edu.wisc.my.portlet.prefname</groupId>
     <artifactId>student-preferred-name-portlet</artifactId>
-    <version>1.0.11-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>student-preferred-name-portlet-webapp</artifactId>
   <packaging>war</packaging>
-  
+
   <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>student-preferred-name-portlet-api</artifactId>
             <version>${project.version}</version>
         </dependency>
-        
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>student-preferred-name-portlet-stored-proc-impl</artifactId>
             <version>${project.version}</version>
         </dependency>
-    
+
         <!-- ===== Compile Time Dependencies ============================== -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -178,7 +178,7 @@
             <artifactId>pluto-taglib</artifactId>
             <scope>provided</scope>
         </dependency>
-        
+
 
         <!-- ===== Test Dependencies ====================================== -->
         <dependency>
@@ -186,9 +186,9 @@
             <artifactId>mockito-all</artifactId>
             <version>1.9.5</version>
         </dependency>
-        
+
     </dependencies>
-    
+
     <build>
         <finalName>StudentPreferredNamePortlet</finalName>
         <plugins>
@@ -256,5 +256,5 @@
             </plugin>
         </plugins>
     </build>
-  
+
 </project>

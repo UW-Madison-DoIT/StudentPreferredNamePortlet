@@ -58,7 +58,7 @@
 				  			<span class="uportal-channel-strong">Primary/Legal Name: </span><span>${preferredName.legalName}</span>
 				  		</div>
 				  		<div>
-			  				<span class="uportal-channel-strong">Preferred Name : </span>
+			  				<span class="uportal-channel-strong">Name in Use: </span>
 			  			</div>
 				  		<div style="margin-left: 1em;">
 				  			<div class="edit-name">
@@ -97,13 +97,13 @@
 					  			<input class="uportal-button fancy-button" value="${save}" type="submit">
 					  		</span>
 					  		<span>
-					  			<a href="${deletePrefNameAdminURL}" class="uportal-button" onclick="return confirm('Are you sure you want to delete this preferred name and mark it as inappropriate?');">Delete</a>
+					  			<a href="${deletePrefNameAdminURL}" class="uportal-button" onclick="return confirm('Are you sure you want to delete this Name in Use and mark it as inappropriate?');">Delete</a>
 					  		</span>
 					  		<span>
 					  			<a href="${ cancelAction }" class="uportal-button">Cancel</a>
 					  		</span>
 				  		</div>
-				  		
+
 			  		</div>
 			  	</div>
 		  	</spring:nestedPath>
@@ -114,7 +114,7 @@
 <script type="text/javascript">
 (function($) {
    $(document).ready(function() {
-	   
-   });			
-})(studentPreferredNamePortlet.jQuery);	
+
+   });
+})(studentPreferredNamePortlet.jQuery);
 </script>

@@ -21,11 +21,11 @@
 
 -->
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+    xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     id="AdvisorReportsPortlet" version="2.5">
-    <display-name>Student Preferred Name Portlet</display-name>
-    
+    <display-name>Name in Use Portlet</display-name>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:/app-context/*.xml,/WEB-INF/context/*.xml</param-value>
@@ -39,12 +39,12 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    
+
     <listener>
         <!-- MUST be listed after ContextLoaderListener -->
         <listener-class>org.jasig.springframework.web.portlet.context.PortletContextLoaderListener</listener-class>
     </listener>
-    
+
     <filter>
         <filter-name>gzipFilter</filter-name>
         <filter-class>net.sf.ehcache.constructs.web.filter.GzipFilter</filter-class>
@@ -65,8 +65,8 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
-    
-    
+
+
     <filter-mapping>
         <filter-name>gzipFilter</filter-name>
         <url-pattern>/img/*</url-pattern>
@@ -84,16 +84,16 @@
         <url-pattern>*.js</url-pattern>
         <url-pattern>*.css</url-pattern>
     </filter-mapping>
-    
+
     <servlet>
         <servlet-name>ViewRendererServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.ViewRendererServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>ViewRendererServlet</servlet-name>
         <url-pattern>/WEB-INF/servlet/view</url-pattern>
     </servlet-mapping>
-    
+
 </web-app>

@@ -1,8 +1,8 @@
 # Change log
 
-Currently building 1.0.11-SNAPSHOT.
+## Next (2.0)
 
-## Next
+Currently building 2.0.0-SNAPSHOT.
 
 + Support Latin-9 character set, when feature flag `preferred-name-allow-latin9` is true.
   This is intended to support accent marks in preferred names, like André, François, Nuñez, etc.

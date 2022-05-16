@@ -21,9 +21,9 @@ public class UnleashService {
   /**
    * Returns true if the given feature flag is enabled for the given user, false otherwise;
    * returns the default value if unknown.
-   * @param flagName
-   * @param eppn
-   * @return
+   * @param flagName name of the feature flag
+   * @param eppn eduPersonPrincipalName of user being served
+   * @return true if the feature flag is enabled; false otherwise
    */
   public boolean featureFlagEnabledFor(String flagName, String eppn, boolean defaultValue) {
 

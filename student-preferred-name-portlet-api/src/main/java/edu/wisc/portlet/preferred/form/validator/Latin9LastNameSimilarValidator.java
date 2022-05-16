@@ -133,9 +133,9 @@ public class Latin9LastNameSimilarValidator  implements Validator  {
    *
    * Given null, returns null.
    *
-   * @param name
-   * @param normalizeFrom
-   * @param normalizeTo
+   * @param name the name to normalize
+   * @param normalizeFrom characters that will be replaced
+   * @param normalizeTo String with which each instance of the characters will be replaced
    * @return String that is name with characters in normalizeFrom replaced with normalizeTo
    */
   public static String normalizeCharacterFamily(String name, String normalizeFrom, String normalizeTo) {

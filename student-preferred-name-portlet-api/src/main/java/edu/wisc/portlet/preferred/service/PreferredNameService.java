@@ -10,7 +10,7 @@ public interface PreferredNameService {
      *
      * If the user has no name preference, returns an unpopulated PreferredName object.
      *
-     * @param pvi
+     * @param pvi user identifier
      * @return a PreferredName object, whether the user prefers or not. Does not return null.
      */
     public PreferredName getPreferredName(String pvi);
@@ -22,8 +22,8 @@ public interface PreferredNameService {
      * If the user has no name preference,
      * returns a PreferredName object preferring the last name of record.
      *
-     * @param pvi
-     * @param legalLastName
+     * @param pvi user identifier
+     * @param legalLastName user surname
      * @return a PreferredName .  will not return null.
      */
     public PreferredName getPreferredName(String pvi, String legalLastName);

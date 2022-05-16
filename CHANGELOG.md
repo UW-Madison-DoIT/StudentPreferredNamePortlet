@@ -1,8 +1,12 @@
 # Change log
 
-## Next (2.0)
+## Next
 
-Currently building 2.0.0-SNAPSHOT.
+Currently building 2.0.1-SNAPSHOT.
+
+## 2.0.0
+
+2022-05-16
 
 + Re-brand to Name in Use
 + Support Latin-9 character set, when feature flag `preferred-name-allow-latin9` is true.
@@ -13,6 +17,7 @@ Currently building 2.0.0-SNAPSHOT.
   developed a reputation under their prior name) and for people navigating life events wherein legal name might
   lag behind or not match their preference in how to be named in the university setting
   (for example: marriage, separation, divorce, partnership).
++ Changes validation error message to stop telling people their names are invalid. It's not you, it's us.
 
 ## 1.0.10 and earlier
 

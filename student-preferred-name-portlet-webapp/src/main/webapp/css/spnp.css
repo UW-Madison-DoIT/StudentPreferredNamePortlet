@@ -1,11 +1,10 @@
 .student-preferred-name {
   padding: 5px;
- 
+
 }
 
 .student-preferred-name p {
 	font-style: italic;
-	font-size : x-small;
 }
 
 .student-preferred-name .fancy-button {
@@ -27,61 +26,58 @@
  {
  	padding : 1em;
  }
- 
+
  .student-preferred-name .dl-contact-info p {
  	font-style: italic;
- 	font-size: x-small;
  	margin: .5em;
  }
- 
+
  .student-preferred-name .edit-name {
-	float : left; 
+	float : left;
 	padding-right: 1em;
  }
- 
+
  .student-preferred-name .edit-notice {
  	clear : left;
  }
- 
+
  .student-preferred-name .pvi-lookup .edit-buttons {
-	text-align: inherit; 
+	text-align: inherit;
  }
- 
+
  .student-preferred-name .modify-preferred-name .edit-buttons {
-	text-align: inherit; 
+	text-align: inherit;
 	max-width : inherit;
  }
- 
+
  .student-preferred-name .label {
-	font-size : x-small;
  }
- 
+
  .student-preferred-name .error {
  	color: #f00;
  }
- 
+
  .student-preferred-name .info {
  	color: green;
  	font-style: italic;
- 	font-size: smaller;
  }
- 
+
  .student-preferred-name .pvi-search {
  	padding-bottom: .5em;
  }
- 
+
  .student-preferred-name .pvi-search span {
   	margin-right: 2em;
  }
- 
+
  .student-preferred-name .netid-search span {
   	margin-right: .4em;
  }
- 
+
  .student-preferred-name .source {
  	padding-bottom : .5em;
  }
- 
+
  .student-preferred-name .pref-name-edit {
      margin-left: 1em;
      background-color: #F3F3F3;
@@ -89,16 +85,15 @@
      border-radius: 4px;
      padding: 5px;
  }
- 
+
  .student-preferred-name .pref-name-edit .names {
    display: inline-block;
  }
- 
+
  .student-preferred-name .label {
     color: black;
  }
- 
+
  .student-preferred-name .info-text {
-   font-size: 12px;
    padding-left: 5px;
  }

@@ -1,5 +1,9 @@
 # Change log
 
+## Next
+
+Now building 2.0.2-SNAPSHOT.
+
 ## 2.0.1
 
 2022-05-31

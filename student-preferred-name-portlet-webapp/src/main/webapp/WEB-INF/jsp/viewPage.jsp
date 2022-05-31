@@ -111,7 +111,7 @@
                         </div>
                           <c:if test="${! allowDissimilarLastName}">
                             <div class='info-text'>
-                              Preferred last name must be similar to legal last name.
+                              Name in Use last name must be similar to legal last name.
                               <c:choose>
                                 <c:when test="${allowLatin9}">
                                   Changes to capitalization, whitespace, hyphen, single quote, and accents are supported.

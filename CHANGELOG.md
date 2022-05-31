@@ -4,6 +4,8 @@
 
 Currently building 2.0.1-SNAPSHOT.
 
++ Reflect re-brand to Name in Use in last name similarity requirement instructions.
+
 ## 2.0.0
 
 2022-05-16

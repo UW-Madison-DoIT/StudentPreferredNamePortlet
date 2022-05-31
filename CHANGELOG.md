@@ -1,8 +1,8 @@
 # Change log
 
-## Next
+## 2.0.1
 
-Currently building 2.0.1-SNAPSHOT.
+2022-05-31
 
 + Reflect re-brand to Name in Use in last name similarity requirement instructions.
 

@@ -87,7 +87,46 @@ This validator is imperfect and should be enhanced as real world cases arise tha
 If the `preferred-name-allow-any-last-name` feature flag *is* set,
 the form does not check for similarity between preferred and legal last names.
 
+When the Portlet validates proposed name-in-use last name against system of record last name, it is using the value of LDAP attribute `wiscEduSORLastName` as the last name to validate against.
 
+In `PersonalInformationController.java`:
+
+```java
+  @ActionMapping(params = "action=savePreferredName")
+    public void submitEdit(ModelMap modelMap, ActionRequest request, ActionResponse response,
+        PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
+// ...
+        String legalLastName = userInfo.get("wiscEduSORLastName");
+        PreferredNameExtended pne = new PreferredNameExtended(preferredName, legalLastName);
+// ...
+            ValidationUtils.invokeValidator(new Latin9LastNameSimilarValidator(), pne, bindingResult);
+// ...
+        }
+```
+
+`userInfo.get(wiscEduSORLastName")` gets `wiscEduSORLastName` as mapped into the Portlet from the Portal user attribute.
+
+In `portlet.xml`:
+
+```xml
+    <user-attribute>
+        <name>wiscEduSORName</name>
+    </user-attribute>
+```
+
+MyUW reads that user attribute from LDAP.
+
+In [MyUW LDAP configuration][]:
+
+```xml
+<!-- ... -->
+<bean class="org.jasig.services.persondir.support.ldap.LdapPersonAttributeDao">
+  <!-- ... -->
+  <property name="resultAttributeMapping">
+    <map>
+      <!-- ... -->
+      <entry key="wiscEduSORName" value="wiscEduSORName"/>
+```
 
 ## Admin interface
 
@@ -196,3 +235,5 @@ stored procedures, respectively.
 [Student Personal Information]: https://my.wisc.edu/web/apps/details/StudentPreferredName
 [Preferred Name]: https://my.wisc.edu/web/apps/details/preferred-name
 [Madison "Personal Information" portlet]: https://my.wisc.edu/web/apps/details/contact-information
+
+[MyUW LDAP configuration]: https://git.doit.wisc.edu/myuw/uPortal/-/blob/uw-master/uportal-war/src/main/resources/properties/contexts/personDirectoryContext.xml#L407

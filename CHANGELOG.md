@@ -4,6 +4,8 @@
 
 Now building 2.0.2-SNAPSHOT.
 
++ use myuw-parent 8 which additionally sources artifacts from artifactorydoit.jfrog.io
+
 ## 2.0.1
 
 2022-05-31

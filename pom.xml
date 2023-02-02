@@ -4,7 +4,7 @@
     <parent>
         <groupId>edu.wisc.my</groupId>
         <artifactId>myuw-parent</artifactId>
-        <version>8</version>
+        <version>10</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -24,6 +24,23 @@
     </scm>
 
     <repositories>
+
+      <repository>
+        <id>myuw-releases-artifactorydoit</id>
+        <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-release-cloud/</url>
+        <releases><enabled>true</enabled></releases>
+        <snapshots><enabled>false</enabled></snapshots>
+      </repository>
+      <repository>
+        <id>myuw-snapshots-artifactorydoit</id>
+        <url>https://artifactorydoit.jfrog.io/artifactory/myuw-maven-local-snapshot-cloud/</url>
+        <releases><enabled>false</enabled></releases>
+        <snapshots>
+          <enabled>true</enabled>
+          <updatePolicy>always</updatePolicy>
+        </snapshots>
+      </repository>
+
         <repository>
             <id>myuw-releases</id>
             <url>https://artifacts.doit.wisc.edu/artifactory/myuw-maven-local-release/</url>

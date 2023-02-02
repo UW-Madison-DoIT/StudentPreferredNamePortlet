@@ -4,7 +4,7 @@
 
 Now building 2.0.2-SNAPSHOT.
 
-+ use myuw-parent 8 which additionally sources artifacts from artifactorydoit.jfrog.io
++ use myuw-parent 10 which publishes artifacts to and additionally sources artifacts from artifactorydoit.jfrog.io
 
 ## 2.0.1
 

@@ -56,6 +56,12 @@
 	color: initial;
  }
 
+ a:focus {
+	outline: 2px solid #0479a8 !important;
+	outline-offset: 1px;
+	color: initial;
+ }
+
  .student-preferred-name .pvi-lookup .edit-buttons {
 	text-align: inherit;
  }
@@ -101,7 +107,6 @@
  .edit-name input:focus {
 		outline: 2px solid #0479a8 !important;
 		color: initial;
-		border: none;
  }
 
  .student-preferred-name .pref-name-edit .names {

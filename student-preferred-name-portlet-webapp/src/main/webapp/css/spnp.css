@@ -21,8 +21,8 @@
 	background: #005577;
 }
 
-.hrs.dl-contact-info .fancy-button:focus {
-  outline: 2px dotted #fff !important;
+.student-preferred-name .fancy-button:focus {
+	outline: 2px dotted #fff !important;
 }
 
 .student-preferred-name .fancy-cancel {
@@ -52,6 +52,7 @@
 
  .student-preferred-name .edit-notice a {
 	outline: 2px solid #0479a8 !important;
+	outline-offset: 1px;
 	color: initial;
  }
 

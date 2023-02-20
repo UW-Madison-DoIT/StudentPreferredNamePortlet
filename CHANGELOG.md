@@ -4,6 +4,11 @@
 
 Now building 2.0.2-SNAPSHOT.
 
++ Usability improvements:
+  + focus on name-in-use edit form fields when displaying edit form.
+  + Visually indicate focus on clickable elements.
+  + Increase color contrast of some text.
+  + Increase some font sizes.
 + use myuw-parent 10 which publishes artifacts to and additionally sources artifacts from artifactorydoit.jfrog.io
 
 ## 2.0.1

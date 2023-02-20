@@ -2,7 +2,9 @@
 
 ## Next
 
-Now building 2.0.2-SNAPSHOT.
+Now building 2.0.3-SNAPSHOT.
+
+## 2.0.2 - 2023-02-20
 
 + Usability improvements:
   + focus on name-in-use edit form fields when displaying edit form.

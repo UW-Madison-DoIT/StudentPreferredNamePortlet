@@ -11,6 +11,7 @@
 }
 
 .student-preferred-name .fancy-button {
+	font-size: 16px;
 	background: #0479a8;
 	color: white !important;
 	font-weight : normal;
@@ -26,8 +27,12 @@
 }
 
 .student-preferred-name .fancy-cancel {
-	background: lightgray;
-  color: black !important;
+	color: #0479a8;
+	background-color: #fff;
+	font-size: 16px;
+	padding: 6px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
   box-shadow: none;
 }
 
@@ -50,7 +55,7 @@
  	clear : left;
  }
 
- .student-preferred-name .edit-notice a {
+ .student-preferred-name .edit-notice a:focus {
 	outline: 2px solid #0479a8 !important;
 	outline-offset: 1px;
 	color: initial;
@@ -99,7 +104,6 @@
  .student-preferred-name .pref-name-edit {
 	margin: 1em 0em 1em 1em;
 	background-color: #F3F3F3;
-	width: 66%;
 	border-radius: 4px;
 	padding: 5px;
  }

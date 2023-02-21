@@ -58,8 +58,8 @@
                   <span>${preferredName}</span>
                 </c:if>
                       &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
-                      <div class="cta-group"><a class="primary-cta change-NameInUse-Btn" href="#" aria-label="Change your Name In Use" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
-                      &nbsp;<a class="secondary-cta" href="${deletePreferredNameURL}" aria-label="Delete your Name In Use" onclick="return confirm('Are you sure you want to delete your Name in Use?');"><spring:message code="delete"/></a></div>
+                      &nbsp;<a class="change-NameInUse-Btn" href="#" aria-label="Change your Name In Use" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
+                      &nbsp;<a href="${deletePreferredNameURL}" aria-label="Delete your Name In Use" onclick="return confirm('Are you sure you want to delete your Name in Use?');"><spring:message code="delete"/></a>
               </span>
           </div>
           <div class='edit-area'>
@@ -161,8 +161,8 @@ var mname = "";
 
       studentPreferredNamePortlet.displayEdit = function (enable) {
           if(enable) {
-              $(".${n}first-name").focus();
               $(".${n}edit").show();
+              $(".${n}first-name").focus();
               $(".${n}view").hide();
 
           } else {

@@ -19,7 +19,7 @@
 }
 
 .student-preferred-name .fancy-button:hover {
-	background: #005577;
+	background: #005577 !important;
 }
 
 .student-preferred-name .fancy-button:focus {

@@ -2,7 +2,11 @@
 
 ## Next
 
-Now building 2.0.3-SNAPSHOT.
+Now building 2.0.4-SNAPSHOT.
+
+## 2.0.3 - 2023-02-24
+
++ Fixes a button styling issue in 2.0.2.
 
 ## 2.0.2 - 2023-02-20
 
